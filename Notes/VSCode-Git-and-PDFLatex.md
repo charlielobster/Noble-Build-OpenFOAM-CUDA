@@ -3,7 +3,7 @@
 
 ```bash
 sudo apt install git gh # git tools
-sudo snap install code --classic # vc code
+sudo snap install code --classic # vs code
 
 # git config
 git config --global user.name <user name>
