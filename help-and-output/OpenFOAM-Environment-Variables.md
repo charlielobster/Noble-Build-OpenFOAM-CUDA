@@ -11,7 +11,7 @@ exec env -i bash --norc --noprofile
 ```bash
 # output has been edited
 
-bash-5.2$ source ~/repos/OpenFOAM_com_build_test/OpenFOAM/etc/bashrc
+bash-5.2$ source ~/repos/OpenFOAM/etc/bashrc
 
 bash-5.2$ env | sort
 ADIOS2_VERSION=none
@@ -23,31 +23,31 @@ CGAL_VERSION=5.6
 FFTW_ARCH_PATH=/opt/fftw
 FFTW_VERSION=3.3.11
 FOAM_API=2606
-FOAM_APP=/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/applications
-FOAM_APPBIN=/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/platforms/linux64GccDPInt32Opt/bin
-FOAM_ETC=/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/etc
-FOAM_EXT_LIBBIN=/home/user/repos/OpenFOAM_com_build_test/ThirdParty-common/platforms/linux64GccDPInt32/lib
-FOAM_LIBBIN=/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/platforms/linux64GccDPInt32Opt/lib
+FOAM_APP=/home/user/repos/OpenFOAM/applications
+FOAM_APPBIN=/home/user/repos/OpenFOAM/platforms/linux64GccDPInt32Opt/bin
+FOAM_ETC=/home/user/repos/OpenFOAM/etc
+FOAM_EXT_LIBBIN=/home/user/repos/ThirdParty-common/platforms/linux64GccDPInt32/lib
+FOAM_LIBBIN=/home/user/repos/OpenFOAM/platforms/linux64GccDPInt32Opt/lib
 FOAM_MPI=sys-openmpi
 FOAM_RUN=/OpenFOAM/user-v2606/run
-FOAM_SITE_APPBIN=/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/site/2606/platforms/linux64GccDPInt32Opt/bin
-FOAM_SITE_LIBBIN=/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/site/2606/platforms/linux64GccDPInt32Opt/lib
-FOAM_SOLVERS=/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/applications/solvers
-FOAM_SRC=/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/src
-FOAM_TUTORIALS=/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/tutorials
+FOAM_SITE_APPBIN=/home/user/repos/OpenFOAM/site/2606/platforms/linux64GccDPInt32Opt/bin
+FOAM_SITE_LIBBIN=/home/user/repos/OpenFOAM/site/2606/platforms/linux64GccDPInt32Opt/lib
+FOAM_SOLVERS=/home/user/repos/OpenFOAM/applications/solvers
+FOAM_SRC=/home/user/repos/OpenFOAM/src
+FOAM_TUTORIALS=/home/user/repos/OpenFOAM/tutorials
 FOAM_USER_APPBIN=/OpenFOAM/user-v2606/platforms/linux64GccDPInt32Opt/bin
 FOAM_USER_LIBBIN=/OpenFOAM/user-v2606/platforms/linux64GccDPInt32Opt/lib
-FOAM_UTILITIES=/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/applications/utilities
+FOAM_UTILITIES=/home/user/repos/OpenFOAM/applications/utilities
 HDF5_VERSION=none
 HYPRE_ARCH_PATH=/opt/hypre
 HYPRE_VERSION=3.1.0
 KAHIP_ARCH_PATH=/opt/kahip
 KAHIP_VERSION=3.17
-LD_LIBRARY_PATH=/OpenFOAM/user-v2606/platforms/linux64GccDPInt32Opt/lib/sys-openmpi:/OpenFOAM/user-v2606/platforms/linux64GccDPInt32Opt/lib:/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/site/2606/platforms/linux64GccDPInt32Opt/lib:/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/platforms/linux64GccDPInt32Opt/lib/sys-openmpi:/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/platforms/linux64GccDPInt32Opt/lib:/home/user/repos/OpenFOAM_com_build_test/ThirdParty-common/platforms/linux64GccDPInt32/lib/sys-openmpi:/home/user/repos/OpenFOAM_com_build_test/ThirdParty-common/platforms/linux64GccDPInt32/lib:/opt/fftw/lib:/usr/lib64:/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/platforms/linux64GccDPInt32Opt/lib/dummy
+LD_LIBRARY_PATH=/OpenFOAM/user-v2606/platforms/linux64GccDPInt32Opt/lib/sys-openmpi:/OpenFOAM/user-v2606/platforms/linux64GccDPInt32Opt/lib:/home/user/repos/OpenFOAM/site/2606/platforms/linux64GccDPInt32Opt/lib:/home/user/repos/OpenFOAM/platforms/linux64GccDPInt32Opt/lib/sys-openmpi:/home/user/repos/OpenFOAM/platforms/linux64GccDPInt32Opt/lib:/home/user/repos/ThirdParty-common/platforms/linux64GccDPInt32/lib/sys-openmpi:/home/user/repos/ThirdParty-common/platforms/linux64GccDPInt32/lib:/opt/fftw/lib:/usr/lib64:/home/user/repos/OpenFOAM/platforms/linux64GccDPInt32Opt/lib/dummy
 METIS_ARCH_PATH=/opt/karypis
 METIS_VERSION=5.2.1
 MGRIDGEN_VERSION=none
-PATH=/OpenFOAM/user-v2606/platforms/linux64GccDPInt32Opt/bin:/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/site/2606/platforms/linux64GccDPInt32Opt/bin:/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/platforms/linux64GccDPInt32Opt/bin:/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/bin:/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/wmake:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+PATH=/OpenFOAM/user-v2606/platforms/linux64GccDPInt32Opt/bin:/home/user/repos/OpenFOAM/site/2606/platforms/linux64GccDPInt32Opt/bin:/home/user/repos/OpenFOAM/platforms/linux64GccDPInt32Opt/bin:/home/user/repos/OpenFOAM/bin:/home/user/repos/OpenFOAM/wmake:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 PETSC_ARCH_PATH=/opt/petsc
 PETSC_VERSION=3.25.3
 ParaView_VERSION=none
@@ -61,17 +61,17 @@ WM_COMPILER=Gcc
 WM_COMPILER_LIB_ARCH=64
 WM_COMPILER_TYPE=system
 WM_COMPILE_OPTION=Opt
-WM_DIR=/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/wmake
+WM_DIR=/home/user/repos/OpenFOAM/wmake
 WM_LABEL_OPTION=Int32
 WM_LABEL_SIZE=32
 WM_MPLIB=SYSTEMOPENMPI
 WM_OPTIONS=linux64GccDPInt32Opt
 WM_PRECISION_OPTION=DP
 WM_PROJECT=OpenFOAM
-WM_PROJECT_DIR=/home/user/repos/OpenFOAM_com_build_test/OpenFOAM
+WM_PROJECT_DIR=/home/user/repos/OpenFOAM
 WM_PROJECT_USER_DIR=/OpenFOAM/user-v2606
 WM_PROJECT_VERSION=v2606
-WM_THIRD_PARTY_DIR=/home/user/repos/OpenFOAM_com_build_test/ThirdParty-common
+WM_THIRD_PARTY_DIR=/home/user/repos/ThirdParty-common
 ZOLTAN_ARCH_PATH=/opt/zoltan
 ZOLTAN_VERSION=3.901
 ```
@@ -100,21 +100,21 @@ ZOLTAN_VERSION=3.901
 
 ```bash
 FOAM_API=2606
-FOAM_APP=/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/applications
-FOAM_APPBIN=/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/platforms/linux64GccDPInt32Opt/bin
-FOAM_ETC=/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/etc
-FOAM_EXT_LIBBIN=/home/user/repos/OpenFOAM_com_build_test/ThirdParty-common/platforms/linux64GccDPInt32/lib
-FOAM_LIBBIN=/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/platforms/linux64GccDPInt32Opt/lib
+FOAM_APP=/home/user/repos/OpenFOAM/applications
+FOAM_APPBIN=/home/user/repos/OpenFOAM/platforms/linux64GccDPInt32Opt/bin
+FOAM_ETC=/home/user/repos/OpenFOAM/etc
+FOAM_EXT_LIBBIN=/home/user/repos/ThirdParty-common/platforms/linux64GccDPInt32/lib
+FOAM_LIBBIN=/home/user/repos/OpenFOAM/platforms/linux64GccDPInt32Opt/lib
 FOAM_MPI=sys-openmpi
 FOAM_RUN=/OpenFOAM/user-v2606/run
-FOAM_SITE_APPBIN=/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/site/2606/platforms/linux64GccDPInt32Opt/bin
-FOAM_SITE_LIBBIN=/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/site/2606/platforms/linux64GccDPInt32Opt/lib
-FOAM_SOLVERS=/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/applications/solvers
-FOAM_SRC=/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/src
-FOAM_TUTORIALS=/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/tutorials
+FOAM_SITE_APPBIN=/home/user/repos/OpenFOAM/site/2606/platforms/linux64GccDPInt32Opt/bin
+FOAM_SITE_LIBBIN=/home/user/repos/OpenFOAM/site/2606/platforms/linux64GccDPInt32Opt/lib
+FOAM_SOLVERS=/home/user/repos/OpenFOAM/applications/solvers
+FOAM_SRC=/home/user/repos/OpenFOAM/src
+FOAM_TUTORIALS=/home/user/repos/OpenFOAM/tutorials
 FOAM_USER_APPBIN=/OpenFOAM/user-v2606/platforms/linux64GccDPInt32Opt/bin
 FOAM_USER_LIBBIN=/OpenFOAM/user-v2606/platforms/linux64GccDPInt32Opt/lib
-FOAM_UTILITIES=/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/applications/utilities
+FOAM_UTILITIES=/home/user/repos/OpenFOAM/applications/utilities
 ```
 
 # WM Prefix
@@ -143,24 +143,24 @@ WM_COMPILER=Gcc
 WM_COMPILER_LIB_ARCH=64
 WM_COMPILER_TYPE=system
 WM_COMPILE_OPTION=Opt
-WM_DIR=/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/wmake
+WM_DIR=/home/user/repos/OpenFOAM/wmake
 WM_LABEL_OPTION=Int32
 WM_LABEL_SIZE=32
 WM_MPLIB=SYSTEMOPENMPI
 WM_OPTIONS=linux64GccDPInt32Opt
 WM_PRECISION_OPTION=DP
 WM_PROJECT=OpenFOAM
-WM_PROJECT_DIR=/home/user/repos/OpenFOAM_com_build_test/OpenFOAM
+WM_PROJECT_DIR=/home/user/repos/OpenFOAM
 WM_PROJECT_USER_DIR=/OpenFOAM/user-v2606
 WM_PROJECT_VERSION=v2606
-WM_THIRD_PARTY_DIR=/home/user/repos/OpenFOAM_com_build_test/ThirdParty-common
+WM_THIRD_PARTY_DIR=/home/user/repos/ThirdParty-common
 ```
 
 # Alterations to Core Variables
 
 ```bash
-PATH=/OpenFOAM/user-v2606/platforms/linux64GccDPInt32Opt/bin:/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/site/2606/platforms/linux64GccDPInt32Opt/bin:/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/platforms/linux64GccDPInt32Opt/bin:/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/bin:/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/wmake:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-LD_LIBRARY_PATH=/OpenFOAM/user-v2606/platforms/linux64GccDPInt32Opt/lib/sys-openmpi:/OpenFOAM/user-v2606/platforms/linux64GccDPInt32Opt/lib:/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/site/2606/platforms/linux64GccDPInt32Opt/lib:/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/platforms/linux64GccDPInt32Opt/lib/sys-openmpi:/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/platforms/linux64GccDPInt32Opt/lib:/home/user/repos/OpenFOAM_com_build_test/ThirdParty-common/platforms/linux64GccDPInt32/lib/sys-openmpi:/home/user/repos/OpenFOAM_com_build_test/ThirdParty-common/platforms/linux64GccDPInt32/lib:/opt/fftw/lib:/usr/lib64:/home/user/repos/OpenFOAM_com_build_test/OpenFOAM/platforms/linux64GccDPInt32Opt/lib/dummy
+PATH=/OpenFOAM/user-v2606/platforms/linux64GccDPInt32Opt/bin:/home/user/repos/OpenFOAM/site/2606/platforms/linux64GccDPInt32Opt/bin:/home/user/repos/OpenFOAM/platforms/linux64GccDPInt32Opt/bin:/home/user/repos/OpenFOAM/bin:/home/user/repos/OpenFOAM/wmake:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+LD_LIBRARY_PATH=/OpenFOAM/user-v2606/platforms/linux64GccDPInt32Opt/lib/sys-openmpi:/OpenFOAM/user-v2606/platforms/linux64GccDPInt32Opt/lib:/home/user/repos/OpenFOAM/site/2606/platforms/linux64GccDPInt32Opt/lib:/home/user/repos/OpenFOAM/platforms/linux64GccDPInt32Opt/lib/sys-openmpi:/home/user/repos/OpenFOAM/platforms/linux64GccDPInt32Opt/lib:/home/user/repos/ThirdParty-common/platforms/linux64GccDPInt32/lib/sys-openmpi:/home/user/repos/ThirdParty-common/platforms/linux64GccDPInt32/lib:/opt/fftw/lib:/usr/lib64:/home/user/repos/OpenFOAM/platforms/linux64GccDPInt32Opt/lib/dummy
 ```
 
 # Third Party Tools

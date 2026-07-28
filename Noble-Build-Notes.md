@@ -1,6 +1,10 @@
 # Noble Build Notes 
 Last Modified Mon July 27 2026
 
+# Introduction
+
+...
+
 # Build Order
 
 ## Core GPU/MPI Libraries
@@ -32,16 +36,13 @@ Last Modified Mon July 27 2026
 - OpenFOAM
 - AmgX4Foam
 
-# Nvidia driver
 
-Starting from a fresh install of 24.04.4. Haswell's trio of GTX 1080 TIs need:
+Starting from a fresh install of 24.04.4. Choose a minimal install, and do not install any nvidia drivers yet.
 
-```bash
-nvidia-smi
-| NVIDIA-SMI 570.211.01             Driver Version: 570.211.01     CUDA Version: 12.8 
-```
 
-## Nvidia Prerequisites
+# Nvidia drivers
+
+## Register the CUDA Keyring and Install Drivers
 
 ```bash
 # register the CUDA keyring
@@ -49,14 +50,37 @@ wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/
 sudo dpkg -i cuda-keyring_1.1-1_all.deb
 sudo apt update
 
-# Threadripper needs Compute Architecture sm_86 and sm_120
+# Haswell needs Compute Architecture sm_61
 sudo apt install nvidia-driver-570
+
+# Threadripper needs Compute Architecture sm_86 and sm_120
+sudo apt install nvidia-driver-580-open
+reboot
+```
+
+## Probe the device with `nvidia-smi`:
+
+```bash
+# On Haswell
+nvidia-smi
+| NVIDIA-SMI 570.211.01             Driver Version: 570.211.01     CUDA Version: 12.8 
+
+# On TR
+nvidia-smi
+NVIDIA-SMI 580.173.02   Driver Version: 580.173.02  CUDA Version: 13.0     
+0  NVIDIA GeForce RTX 3090 Ti
+1  NVIDIA GeForce RTX 5090
+
+nvidia-smi --query-gpu=gpu_name,compute_cap --format=csv
+name, compute_cap
+NVIDIA GeForce RTX 3090 Ti, 8.6
+NVIDIA GeForce RTX 5090, 12.0
 ```
 
 # CUDA Toolkit
 
 ```bash
-# maintain compatibility with Haswell's sm_61, hence Toolkit 12.8
+# Choose v12.8 to maintain compatibility between TR's sm_120 and Haswell's sm_61
 sudo apt install cuda-toolkit-12-8
 reboot
 ```
@@ -102,8 +126,11 @@ sudo apt install build-essential automake autoconf pkg-config libtool
 ```bash
 ./autogen.sh
 
-# For Haswell:
+# Haswell
 ./configure --prefix=/opt/ucx --with-cuda=/usr/local/cuda --with-nvcc-gencode="-gencode=arch=compute_61,code=sm_61" --enable-mt
+
+# Threadripper
+./configure --prefix=/opt/ucx --with-cuda=/usr/local/cuda --with-nvcc-gencode="-gencode=arch=compute_86,code=sm_86 -gencode=arch=compute_120,code=sm_120" --enable-mt
 ```
 
 # OpenMPI Dependencies
@@ -175,47 +202,23 @@ make -j$(nproc)
 sudo make install
 ```
 
-## Changes to `etc/openmpi-mca-params.conf`
+## Changes to `ompi/etc/openmpi-mca-params.conf`
 
-This appears to be an important tweak for a custom UCX set-up with multiple gencodes. Doing this prevents `ob1` from being the highest prioritized provider in the stack. Instead, `ucx` is always picked. This helps in most cases and passes the PETSc tests, but in theory this configuration could also cause errors too. It is still a little early to say anything certain.
+An important tweak for a custom UCX set-up. Doing this prevents `ob1` from being the highest prioritized provider in the stack. Instead, `ucx` is always picked. This helps in most cases, but this configuration could also cause errors too. It is still a little early to say anything with certainty. Failing to do so generates an error during PETSc's `make check`.
 
-This is confirmed for Haswell too 7/26.
-
-```properties
+```text
 # Point-to-point Messaging Layer
 pml=ucx
+
 # One-sided Communication Layer
 osc=ucx
 ```
 
-### OpenMPI `etc/prefs.sh` Changes
+## OpenMPI `openfoam/etc/prefs.sh` Changes
 
 ```bash
 export MPI_ARCH_PATH=/opt/ompi
 ```
-
-# OpenFOAM `.com` External Tools 
-
-## Introduction 
-
-Similar to most `make` tools, `Allwmake` looks for an `Allwmake` file and only builds subfolders containing one. You can run `./Allwmake` multiple times and it just picks up where it left off. 
-
-## Hacking `etc/config.sh/*`
-
-OpenFOAM has several quirks regarding its external dependencies. 
-
-OpenFOAM uses the convention `etc/config.sh/tool_name` to set default external tool folder locations, and a optional `prefs.sh` file inside `etc/` for preferences. So in theory, any configuration changes in `prefs.sh` get picked up during the standard calls to `./Allwmake`. You do not have to put `prefs.sh` there, and calling `foamEtcFile -list` shows all the searched locations. 
-
-However, when I tried calling `./Allwmake` when inside a subfolder, for some reason, it didn't find the `prefs.sh` file and reverted to OpenFOAM's default locations for those tools. But there was also some strange behavior involving the `prefs.sh` file being removed from `etc/` at some point, which may have caused the issue. 
-
-Eventually, I just hard-coded some of the paths inside `etc/config.sh/*` directly to push through and complete the build. I also had to add `export FFTW_DIR=/opt/fftw` to the `etc/config.sh/FFTW` folder.
-
-## Ignored Third-Party Tools
-
-- ADIOS2
-- CCMIO 
-- HDF5 
-- MGridGen
 
 # ParaView
 
@@ -233,14 +236,16 @@ cd ParaView
 mkdir paraview-build && cd paraview-build
 cmake -GNinja -DCMAKE_INSTALL_PREFIX=/opt/paraview -DPARAVIEW_USE_PYTHON=ON -DPARAVIEW_USE_CUDA=ON -DPARAVIEW_USE_MPI=ON -DCMAKE_CUDA_ARCHITECTURES="61" -DVTK_SMP_IMPLEMENTATION_TYPE=TBB -DCMAKE_BUILD_TYPE=Release ..
 
-# ninja -j runs out of memory and always has to be re-run a couple of times on both machines. 
+# ninja -j runs out of memory and always had to be re-run a couple of times on both machines. 
 # build feedback is minimal. some libraries take several minutes to build.
-# Update: ninja -j$(nproc) ultimately failed on TR.
-# I had to use cmake --build . -j$(nproc) to finally complete the process. 
+# somewhere around 10k/24k objects, I lowered the CPU count down to around on fourth of the available cores.
+# apparently, this gives ninja or cmake more memory for some of the larger objects.
+# ninja -j$(nproc) completely failed on TR.
 # Apparently, there are known issues with how ninja handles large core sizes on some AMD CPUs.
+# I had to use cmake --build . -j$(nproc) to finally complete the process. 
 
-# ninja -j$(nproc) 
-cmake --build . -j$(nproc)
+ninja -j$(nproc) 
+# or use cmake --build . -j$(nproc)
 sudo ninja install
 ```
 
@@ -253,7 +258,7 @@ export VTK_VERSION="none"
 
 # Umpire
 
-Like PRRTE, and OpenPMIx, Umpire is used by Hypre and is a configurable installation inside Hypre's build process. Here is the authoritative source.
+Like PRRTE and OpenPMIx, Umpire is used by Hypre, and is a configurable installation inside Hypre's build process. Here is the authoritative source.
 
 ## Collect Umpire Code
 
@@ -292,7 +297,13 @@ cd repos
 git clone --recursive https://github.com/hypre-space/hypre.git
 cd hypre
 mkdir build && cd build
+
+# Haswell
 cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=mpicc -DCMAKE_CXX_COMPILER=mpicxx -DHYPRE_ENABLE_CUDA=ON -DMPI_INCLUDE_PATH=/opt/ompi/include -DCMAKE_CUDA_ARCHITECTURES="61"  -DHYPRE_ENABLE_GPU_AWARE_MPI=ON -DHYPRE_ENABLE_OPENMP=ON -DHYPRE_ENABLE_UMPIRE=ON -DHYPRE_ENABLE_UMPIRE_HOST=ON -DHYPRE_ENABLE_UMPIRE_DEVICE=ON -DCMAKE_INSTALL_PREFIX=/opt/hypre -DTPL_UMPIRE_INCLUDE_DIRS=/opt/umpire/include -DTPL_UMPIRE_LIBRARIES=/opt/umpire/lib/libumpire.so ../src
+
+# Threadripper
+cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=mpicc -DCMAKE_CXX_COMPILER=mpicxx -DHYPRE_ENABLE_CUDA=ON -DMPI_INCLUDE_PATH=/opt/ompi/include -DCMAKE_CUDA_ARCHITECTURES="86;120"  -DHYPRE_ENABLE_GPU_AWARE_MPI=ON -DHYPRE_ENABLE_OPENMP=ON -DHYPRE_ENABLE_UMPIRE=ON -DHYPRE_ENABLE_UMPIRE_HOST=ON -DHYPRE_ENABLE_UMPIRE_DEVICE=ON -DCMAKE_INSTALL_PREFIX=/opt/hypre -DTPL_UMPIRE_INCLUDE_DIRS=/opt/umpire/include -DTPL_UMPIRE_LIBRARIES=/opt/umpire/lib/libumpire.so ../src
+
 make -j$(nproc)
 sudo make install
 ```
@@ -325,7 +336,13 @@ lscpu
 
 cd fftw-3.3.11
 mkdir build && cd build
+
+# Haswell
 ../configure --prefix=/opt/fftw --enable-openmp --enable-shared --enable-threads --enable-mpi --enable-sse2 --enable-avx --enable-avx2
+
+# Threadripper
+../configure --prefix=/opt/fftw --enable-openmp --enable-shared --enable-threads --enable-mpi --enable-sse2 --enable-avx --enable-avx2 --enable-avx512
+
 make -j$(nproc)
 sudo make install
 ```
@@ -342,6 +359,8 @@ sudo make install
 ```
 
 # Karypis Labs
+
+Create a [consolidated repository] containing all three Karypis Labs tools used by PETSc and OpenFOAM.
 
 ## GKlib
 
@@ -401,13 +420,14 @@ sudo make install
 
 # Scotch
 
+## Clone Repository
+
 ```bash
 # Need Scotch for orthogonal decomposition
 git clone --recursive https://gitlab.inria.fr/scotch/scotch.git
-
 ```
 
-## Cmake
+## Cmake Configuration
 
 ```bash
 cd Scotch
@@ -419,7 +439,7 @@ make -j$(nproc)
 sudo make install
 ```
 
-### Scotch `etc/config.sh` Changes
+### Scotch `openfoam/etc/config.sh/scotch` and `openfoam/etc/prefs.sh` Changes
 
 ```
 export SCOTCH_ARCH_PATH=/opt/scotch
@@ -459,22 +479,27 @@ sudo cp include/*.h /opt/zoltan/include
 
 # AMGX
 
-
-## Test launcher Issues
-
-Ended up changing a line in `src/CMakeLists.txt` prior to running `cmake`:
-
-```properties
-(line 55) target_link_libraries(amgx_tests_launcher "/opt/ompi/lib/libmpi.so")
-```
-
-## Build
+## Clone Repository
 
 ```bash
 git clone https://github.com/amgx/amgx.git
 cd amgx
 mkdir build && cd build
+```
 
+## Test launcher Issues
+
+Change a line in `src/CMakeLists.txt` prior to running `cmake`:
+
+```text
+(line 55) target_link_libraries(amgx_tests_launcher "/opt/ompi/lib/libmpi.so")
+```
+
+## Cmake Configuration and Build
+
+```bash
+
+# Haswell
 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/amgx -DCMAKE_CUDA_ARCHITECTURES="61" -DCMAKE_C_COMPILER=mpicc -DCMAKE_CXX_COMPILER=mpicxx -DCMAKE_CUDA_FLAGS="-I/opt/ompi/include" -DCMAKE_EXE_LINKER_FLAGS="-L/opt/ompi/lib -lmpi" ..
 
 make -j$(nproc)
@@ -486,8 +511,10 @@ sudo make install
 ## Repository and Prerequisites
 
 ```bash
-# Need PETSc for Scientific Computation
+# We need PETSc for scientific computation
 git clone --recursive https://github.com/petsc/PETSc.git
+
+# We need blas and lapack for PETSc
 sudo apt install libopenblas-dev liblapack-dev
 ```
 
@@ -498,17 +525,18 @@ cd PETSc
 mkdir build
 
 sudo mkdir /opt/petsc
-sudo chown skooby:skooby /opt/petsc
+sudo chown user:user /opt/petsc
 
 # works after removing Scotch's duplicate metis.h insertion
 ./configure --prefix=/opt/petsc --with-openmp=1 --with-bison=1 --with-boost=1 --with-cuda=1 --with-ucx-dir=/opt/ucx --with-mpi-dir=/opt/ompi --with-amgx-dir=/opt/amgx --with-hwloc-dir=/opt/hwloc --with-umpire-dir=/opt/umpire --with-scotch-dir=/opt/scotch --with-ptscotch-dir=/opt/scotch --with-fftw-dir=/opt/fftw --with-zoltan-dir=/opt/zoltan --with-hypre-dir=/opt/hypre --with-parmetis-dir=/opt/karypis --with-metis-dir=/opt/karypis
 
-make PETSC_DIR=/media/skooby/data/repos/petsc PETSC_ARCH=arch-linux-c-debug all
+make PETSC_DIR=/home/user/repos/petsc PETSC_ARCH=arch-linux-c-debug all
 
-make PETSC_DIR=/media/skooby/data/repos/petsc PETSC_ARCH=arch-linux-c-debug install
+make PETSC_DIR=/home/user/repos/petsc PETSC_ARCH=arch-linux-c-debug check
+
+make PETSC_DIR=/home/user/repos/petsc PETSC_ARCH=arch-linux-c-debug install
 
 sudo chown root:root /opt/petsc
-
 ```
 
 ## PETSc `etc/prefs.sh` Changes
@@ -519,31 +547,64 @@ export PETSC_ARCH_PATH=/opt/petsc
 
 # OpenFOAM
 
-[OpenFOAM Configuration Details](OpenFOAM/OpenFOAM-Configuration.md)
+## Introduction 
 
-## Update for 7/26
+Similar to most `make` tools, `Allwmake` looks for an `Allwmake` file and only builds subfolders containing one. You can run `./Allwmake` multiple times and it just picks up where it left off. 
 
-Definitely need to edit `etc/config.sh/tool-name` files directly with the correct `ARCH_PATH` variables prior to calling `Allwmake`.
+Although built from a relatively simple set of `Allwmake` commands, OpenFOAM uses a complex and opaque configuration and build process under the hood that automatically sets and edits multiple environment variables, and creates numerous new paths and folders. As part of the normal documented build process, users are directed to source the `etc/bashrc` in the root OpenFOAM directory to kick off this process. This `bashrc` file generates or changes 60 environment variables.
 
-## Haswell Issues
+Some of the expected configuration functionality is broken for my Ubuntu instance, in particular regarding external tool mappings. OpenFOAM uses a `etc/config.sh/tool-name` convention for settings paths, along with an associated, user-created `etc/prefs.sh` file for customization and overriding. However, in addition to defining variables in these `tool-name` files, there is also some embedded logic in some cases, and that logic didn't always end up producing the expected results, in my case. 
 
-Currently on Haswell, there are issues with the external tools and libraries because I set `WM_THIRD_PARTY_DIR` to the empty string during the OpenFOAM configuration, build, and install (Allwmake). I did this because there are no external tools for OpenFOAM to configure on either machine (in theory). 
+Instead, I wound up needing to both add a `prefs.sh` file and also overwrite some of the values and/or logic set in some of those `etc/config.sh/tool-name` files as well. In particular, I needed to both include a `prefs.sh` file, and override the `metis`, `kahip`, `scotch`, and `zoltan` files before I could build their associated artifacts (`libmetis.so`, `libkahip.so`, etc) without issues. The entire tools configuration infrastructure is mostly a black box to me, so I can't really explain why this is would be the case. I've included all the file edits here in the `OpenFOAM` folder, inside this repository, for your review.
 
-Note that PETSc's wrapper library, `libpetscFoam.so`, has been built and installed in an arbitrary location, outside of path conventions. Several other tools may not be functional for perhaps similar reasons. OpenFOAM's `lib` folder contains a `dummy` folder with a number of similar wrapper libraries to `libpetscFoam.so`, but for METIS, Scotch, Zoltan, etc. Thus, these wrapper libs may not be functional either.
+
+## Installation Topology
+
+Like all the external tools, this build assumes a target installation path of `/opt/openfoam`. Create a new folder in `/opt` called `openfoam`, and give temporary ownership to your regular user:
+
+```bash
+sudo mkdir /opt/openfoam
+sudo chown username:username /opt/openfoam
+cp -r repos/OpenFOAM/* /opt/openfoam
+```
+
+## External Tools Configuration
+
+### Hacking `etc/config.sh/*`
+
+OpenFOAM has several quirks regarding its external dependencies. 
+
+OpenFOAM uses the convention `etc/config.sh/tool_name` to set default external tool folder locations, and a optional `prefs.sh` file inside `etc/` for preferences. So in theory, any configuration changes in `prefs.sh` get picked up during the standard calls to `./Allwmake`. You do not have to put `prefs.sh` there, and calling `foamEtcFile -list` shows all the searched locations. 
+
+However, when I tried calling `./Allwmake` when inside a subfolder, for some reason, it didn't find the `prefs.sh` file and reverted to OpenFOAM's default locations for those tools. But there was also some strange behavior involving the `prefs.sh` file being removed from `etc/` at some point, which may have caused the issue. 
+
+Eventually, I just hard-coded some of the paths inside `etc/config.sh/*` directly to push through and complete the build. I also had to add `export FFTW_DIR=/opt/fftw` to the `etc/config.sh/FFTW` folder.
+
+## Ignored Third-Party Tools
+
+- ADIOS2
+- CCMIO 
+- HDF5 
+- MGridGen
 
 ## Stale ParaView Libraries
 
 I built the current version of ParaView after trying `v5.12.1`, the version used in the tarball associated with OpenFOAM `v2606` on OpenFOAM.com's website. Note that brittle dependencies exist between VTK and QT 5 in the only ParaView-aware OpenFOAM component, a module named PVFoamReader. PVFoamReader is also the only tool that requires HDF5 support. There is also an associated visualization component, an in-process off-screen renderer, that uses VTK libraries as well. It may have built on Haswell without issues.
 
-Due to the issues with those incompatible ParaView libraries, two `Allwmake` files were renamed to `xxxAllwmake`, in `src/plugins/bindings/vtk-hdf` and `src/modules/visualization`.
+Due to the issues with those incompatible ParaView libraries, rename two `Allwmake` files to `xxxAllwmake`, in the following `openfoam` locations:
 
-## Copy `OpenFOAM/etc` Contents Into `/opt/openfoam/etc/`
+- `src/plugins/bindings/vtk-hdf` 
+- `src/modules/visualization`.
 
-See the OpenFOAM External Tools Introduction for details and possible issues.
+## Copy This Repository's `OpenFOAM/etc` Contents into Target Folder
 
-## Edit the .bashrc
+From this repostory, copy the contents of `OpenFOAM/etc` into `/opt/openfoam/etc/` and overwrite existing files.
+
+## Source `openfoam/etc/bashrc`
 
 ```bash
+cd /opt/openfoam
+
 # sources prefs.sh, but later bashrc overwrites some vars
 source /opt/openfoam/etc/bashrc
 
@@ -554,16 +615,90 @@ source /opt/openfoam/etc/prefs.sh
 ## Run Allwmake
 
 ```bash
-cd openfoam
-
-# Executes both Allwmake and Allwmake-modules
+# Execute both Allwmake and Allwmake-modules
 ./Allwmake -j
-
-# ran 7/25 for just the main script
-# ./Allwmake -prefix=false
 
 # Plugins
 /./Allwmake-plugins -j
+```
+
+# Post-Install Environment Clean-Up and Consolidation
+
+Once the installation is complete, I consolidated my environment and generated folders, and locked down the installation by granting ownership to `root`. 
+
+```bash
+# move everything that Allwmake built into ...
+# one lib folder
+mv $FOAM_USER_LIBBIN/* $FOAM_LIBBIN
+
+# and one bin folder
+mv $FOAM_USER_APPBIN/* $FOAM_APPBIN
+
+# remove dummy libs
+rm -rf $FOAM_LIBBIN/dummy
+
+# don't use a separate folder for the ompi libs
+mv $FOAM_LIBBIN/sys-openmpi/* $FOAM_LIBBIN
+
+# clean up the now empty folder
+rm -rf $FOAM_LIBBIN/sys-openmpi
+
+# move these tools into the bin folder
+mv $FOAM_LIBBIN/../../tools/linux64Gcc/* $FOAM_APPBIN/
+
+# clean up the now empty folder
+rm -rf $FOAM_LIBBIN/../../tools
+
+# just move all the lib files into a folder named lib
+mv $FOAM_LIBBIN /opt/openfoam/lib
+
+# just move all the bin files into the existing bin folder
+mv $FOAM_APPBIN/* /opt/openfoam/bin
+
+# remove the now empty legacy paths
+rm -rf /opt/openfoam/platforms
+
+exit
+```
+
+Now, source a new version of `.bashrc` with the following contents:
+
+```bash
+# OpenFOAM environment variables
+export CUDA_HOME=/usr/local/cuda
+export WM_PROJECT=openfoam
+export WM_PROJECT_DIR=/opt/$WM_PROJECT
+export FOAM_APPBIN=$WM_PROJECT_DIR/bin
+export FOAM_LIBBIN=$WM_PROJECT_DIR/lib
+
+# Just setting these to main application folders for now
+export FOAM_SITE_APPBIN=$FOAM_APPBIN
+export FOAM_SITE_LIBBIN=$FOAM_LIBBIN
+
+# Set to user's custom projects folder
+export WM_PROJECT_USER_DIR=/home/user/My-OpenFOAM-Stuff
+export FOAM_USER_APPBIN=$WM_PROJECT_USER_DIR/bin
+export FOAM_USER_LIBBIN=$WM_PROJECT_USER_DIR/lib
+export FOAM_RUN=$WM_PROJECT_USER_DIR/run
+export WM_THIRD_PARTY_DIR=none
+
+export PATH=$FOAM_USER_APPBIN:$FOAM_APPBIN:/opt/scotch/bin:/opt/karypis/bin:/opt/kahip/bin:/opt/fftw/bin:/opt/umpire/bin:/opt/paraview/bin:/opt/ompi/bin:/opt/prrte/bin:/opt/pmix/bin:/opt/hwloc/bin:/opt/libevent/bin:/opt/ucx/bin:$CUDA_HOME/bin:$PATH
+export LD_LIBRARY_PATH=$FOAM_USER_LIBBIN:$FOAM_LIBBIN:/opt/petsc/lib:/opt/amgx/lib:/opt/zoltan/lib:/opt/scotch/lib:/opt/karypis/lib:/opt/kahip/lib:/opt/fftw/lib:/opt/hypre/lib:/opt/umpire/lib:/opt/paraview/lib:/opt/ompi/lib:/opt/prrte/lib:/opt/pmix/lib:/opt/hwloc/lib:/opt/libevent/lib:/opt/ucx/lib:$CUDA_HOME/lib64
+```
+
+## Check Paths
+
+From a new terminal, check the paths are resolved.
+
+```bash
+ldd /opt/openfoam/lib/libOpenFOAM.so 
+ldd $FOAM_APPBIN/simpleFoam
+# other tools, libs, etc...
+```
+Finally, lock the folder down:
+
+```bash
+sudo chown root:root /opt/openfoam
 ```
 
 # AmgX4Foam
@@ -612,5 +747,5 @@ export CUDA_HOME=/usr/local/cuda
 export PATH=/opt/scotch/bin:/opt/karypis/bin:/opt/fftw/bin:/opt/umpire/bin:/opt/paraview/bin:/opt/ompi/bin:/opt/prrte/bin:/opt/pmix/bin:/opt/hwloc/bin:/opt/libevent/bin:/opt/ucx/bin:$CUDA_HOME/bin:$PATH
 export LD_LIBRARY_PATH=/opt/petsc/lib:/opt/zoltan/lib:/opt/scotch/lib:/opt/karypis/lib:/opt/amgx/lib:/opt/kahip/lib:/opt/fftw/lib:/opt/hypre/lib:/opt/umpire/lib:/opt/paraview/lib:/opt/ompi/lib:/opt/prrte/lib:/opt/pmix/lib:/opt/hwloc/lib:/opt/libevent/lib:/opt/ucx/lib:$CUDA_HOME/lib64
 
-source /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/etc/bashrc
+source /home/user/repos/OpenFOAM_com/OpenFOAM/etc/bashrc
 ```

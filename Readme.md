@@ -7,7 +7,7 @@ This repository documents the configuration, build, and installation of an optim
 
 That includes configuration from source of most of the numerous external tools OpenFOAM has awareness of, such as PETSc, METIS, Scotch, FFTW, etc - as well as all the lower-level or CUDA-aware tools, such as UCX, OpenMPI, Umpire, and AMGX.
 
-So far, the [build notes](Noble-Build-Notes.md) have been tested on two devices covering a wide range of capabilities, and should work for most Nvidia GPUs manufactured in the last decade. Both devices, named Haswell and Threadripper (or TR), are named after their respective CPUs. The older device, Haswell, has a triple 1080 Ti GPU set-up, and uses compute architecture `sm_61`. Meanwhile, TR has a dual 5090, 3090 Ti set-up, and so requires a mixed arch flag (both `sm_86`, and `sm_120`) for several compilation steps.
+The [build notes](Noble-Build-Notes.md) have been tested on two devices covering a broad range of capabilities, and should work for most Nvidia GPUs manufactured in the last decade. Both devices, named Haswell and Threadripper (or TR), are named after their respective CPUs. The older device, Haswell, has a triple 1080 Ti GPU set-up, and uses compute architecture `sm_61`. Meanwhile, TR has a dual 5090, 3090 Ti set-up, and so requires a mixed arch flag (both `sm_86`, and `sm_120`) for several compilation steps.
 
 The repository includes folders containing some OpenFOAM source path overrides in the `etc` folder, an Output folder containing a few helpful reference files, and a Notes folder documenting any specific issues worth discussing about the builds. 
 
