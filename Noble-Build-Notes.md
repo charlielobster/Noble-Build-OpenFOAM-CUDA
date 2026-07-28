@@ -1,9 +1,44 @@
 # Noble Build Notes 
 Last Modified Mon July 27 2026
 
-# Introduction
+# OpenFOAM Configuration Introduction
 
-...
+OpenFOAM uses a custom build tool called `Allwmake`. Similar to most `make` tools, `Allwmake` looks for an `Allwmake` file and only builds subfolders containing one. You can run `./Allwmake` multiple times and it just picks up wherever it left off. 
+
+Although built from a relatively simple set of `Allwmake` commands, OpenFOAM uses a complex and opaque configuration and build process under the hood that automatically sets and edits multiple environment variables, and creates numerous new paths and folders. As part of the normal documented build process, users are directed to source the `etc/bashrc` in the root OpenFOAM directory to kick off this process. This `bashrc` file generates or changes 60 environment variables.
+
+Some of the expected configuration functionality is broken for my Ubuntu instance, in particular regarding external tool mappings. OpenFOAM uses a `etc/config.sh/tool-name` convention for settings paths, along with an associated, user-created `etc/prefs.sh` file for customization and overriding. However, in addition to defining variables in these `tool-name` files, there is also some embedded logic in some cases, and that logic didn't always end up producing the expected results, in my case. 
+
+Instead, I wound up needing to both add a `prefs.sh` file and also overwrite some of the values and/or logic set in some of those `etc/config.sh/tool-name` files as well. In particular, I needed to both include a `prefs.sh` file, and override the `metis`, `kahip`, `scotch`, and `zoltan` files before I could build their associated artifacts (`libmetis.so`, `libkahip.so`, etc) without issues. The entire tools configuration infrastructure is mostly a black box to me, so I can't really explain why this is would be the case. I've included all the file edits here in the `OpenFOAM` folder inside this repository.
+
+
+## External Tools Configuration
+
+### Hacking `etc/config.sh/*`
+
+OpenFOAM has several quirks regarding its external dependencies. 
+
+OpenFOAM uses the convention `etc/config.sh/tool_name` to set default external tool folder locations, and a optional `prefs.sh` file inside `etc/` for preferences. So in theory, any configuration changes in `prefs.sh` get picked up during the standard calls to `./Allwmake`. You do not have to put `prefs.sh` there, and calling `foamEtcFile -list` shows all the searched locations. 
+
+However, when I tried calling `./Allwmake` when inside a subfolder, for some reason, it didn't find the `prefs.sh` file and reverted to OpenFOAM's default locations for those tools. But there was also some strange behavior involving the `prefs.sh` file being removed from `etc/` at some point, which may have caused the issue. 
+
+Eventually, I just hard-coded some of the paths inside `etc/config.sh/*` directly to push through and complete the build. I also had to add `export FFTW_DIR=/opt/fftw` to the `etc/config.sh/FFTW` folder.
+
+## Ignored Third-Party Tools
+
+- ADIOS2
+- CCMIO 
+- HDF5 
+- MGridGen
+
+## Stale ParaView Libraries
+
+I built the current version of ParaView after trying `v5.12.1`, the version used in the tarball associated with OpenFOAM `v2606` on OpenFOAM.com's website. Note that brittle dependencies exist between VTK and QT 5 in the only ParaView-aware OpenFOAM component, a module named PVFoamReader. PVFoamReader is also the only tool that requires HDF5 support. There is also an associated visualization component, an in-process off-screen renderer, that uses VTK libraries as well. It may have built on Haswell without issues.
+
+Due to the issues with those incompatible ParaView libraries, rename two `Allwmake` files to `xxxAllwmake`, in the following `openfoam` locations:
+
+- `src/plugins/bindings/vtk-hdf` 
+- `src/modules/visualization`.
 
 # Build Order
 
@@ -36,9 +71,21 @@ Last Modified Mon July 27 2026
 - OpenFOAM
 - AmgX4Foam
 
+# Install Ubuntu 24.04.4
 
-Starting from a fresh install of 24.04.4. Choose a minimal install, and do not install any nvidia drivers yet.
+Choose a minimal install, and do not install any Nvidia drivers yet.
 
+1) Inside your Windows instance, download the Ubuntu 24.04.4 iso file
+
+    Go to https://releases.ubuntu.com/24.04.4/
+
+2) To boot from a usb stick, follow these directions:
+  
+    https://ubuntu.com/desktop/docs/en/latest/how-to/create-a-bootable-usb-stick/
+
+From your BIOS, boot from the USB drive and install to the target drive. 
+
+"Install latest Graphics and Wifi hardware drivers" was left unchecked for the install. 
 
 # Nvidia drivers
 
@@ -105,7 +152,6 @@ Moving forward, inside `~/.bashrc`, track changes following each successful inst
 export PATH=/opt/mytool/bin:$PATH
 export LD_LIBRARY_PATH=/opt/mytool/lib:$LD_LIBRARY_PATH
 ```
-
 
 # UCX
 
@@ -271,7 +317,11 @@ mkdir build && cd build
 ## Cmake Configuration and Build
 
 ```bash
+# Haswell
 cmake -DENABLE_MPI=ON -DENABLE_CUDA=ON -DBLT_ENABLE_CUDA=ON -DBLT_ENABLE_OPENMP=ON -DBLT_ENABLE_MPI=ON -DBUILD_SHARED_LIBS=ON -DUMPIRE_ENABLE_CUDA=ON -DUMPIRE_ENABLE_OPENMP=ON -DUMPIRE_ENABLE_MPI=ON -DUMPIRE_ENABLE_IPC_SHARED_MEMORY=ON -DUMPIRE_ENABLE_MPI3_SHARED_MEMORY=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_CUDA_ARCHITECTURES="61"  -DUMPIRE_ENABLE_C=ON -DCMAKE_INSTALL_PREFIX=/opt/umpire ..
+
+# TR
+cmake -DENABLE_MPI=ON -DENABLE_CUDA=ON -DBLT_ENABLE_CUDA=ON -DBLT_ENABLE_OPENMP=ON -DBLT_ENABLE_MPI=ON -DBUILD_SHARED_LIBS=ON -DUMPIRE_ENABLE_CUDA=ON -DUMPIRE_ENABLE_OPENMP=ON -DUMPIRE_ENABLE_MPI=ON -DUMPIRE_ENABLE_IPC_SHARED_MEMORY=ON -DUMPIRE_ENABLE_MPI3_SHARED_MEMORY=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_CUDA_ARCHITECTURES="86;120"  -DUMPIRE_ENABLE_C=ON -DCMAKE_INSTALL_PREFIX=/opt/umpire ..
 
 make -j$(nproc)
 sudo make install
@@ -384,7 +434,7 @@ For me, METIS had a couple of bugs in the root folder's `CMakeLists.txt`. I chan
 (line 73) add_subdirectory("include")
 ```
 
-### Pre-Make Step
+### Pre-Cmake Step
 
 Uncomment the `#defines` for `IDXTYPEWIDTH` and `REALTYPEWIDTH` inside `/opt/karypis/include/metis.h`:
 
@@ -498,9 +548,12 @@ Change a line in `src/CMakeLists.txt` prior to running `cmake`:
 ## Cmake Configuration and Build
 
 ```bash
-
 # Haswell
 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/amgx -DCMAKE_CUDA_ARCHITECTURES="61" -DCMAKE_C_COMPILER=mpicc -DCMAKE_CXX_COMPILER=mpicxx -DCMAKE_CUDA_FLAGS="-I/opt/ompi/include" -DCMAKE_EXE_LINKER_FLAGS="-L/opt/ompi/lib -lmpi" ..
+
+# TR
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/amgx -DCMAKE_CUDA_ARCHITECTURES="86;120" -DCMAKE_C_COMPILER=mpicc -DCMAKE_CXX_COMPILER=mpicxx -DCMAKE_CUDA_FLAGS="-I/opt/ompi/include" -DCMAKE_EXE_LINKER_FLAGS="-L/opt/ompi/lib -lmpi" ..
+
 
 make -j$(nproc)
 sudo make install
@@ -539,24 +592,13 @@ make PETSC_DIR=/home/user/repos/petsc PETSC_ARCH=arch-linux-c-debug install
 sudo chown root:root /opt/petsc
 ```
 
-## PETSc `etc/prefs.sh` Changes
+## PETSc `openfoam/etc/prefs.sh` Changes
 
 ```bash
 export PETSC_ARCH_PATH=/opt/petsc
 ```
 
 # OpenFOAM
-
-## Introduction 
-
-Similar to most `make` tools, `Allwmake` looks for an `Allwmake` file and only builds subfolders containing one. You can run `./Allwmake` multiple times and it just picks up where it left off. 
-
-Although built from a relatively simple set of `Allwmake` commands, OpenFOAM uses a complex and opaque configuration and build process under the hood that automatically sets and edits multiple environment variables, and creates numerous new paths and folders. As part of the normal documented build process, users are directed to source the `etc/bashrc` in the root OpenFOAM directory to kick off this process. This `bashrc` file generates or changes 60 environment variables.
-
-Some of the expected configuration functionality is broken for my Ubuntu instance, in particular regarding external tool mappings. OpenFOAM uses a `etc/config.sh/tool-name` convention for settings paths, along with an associated, user-created `etc/prefs.sh` file for customization and overriding. However, in addition to defining variables in these `tool-name` files, there is also some embedded logic in some cases, and that logic didn't always end up producing the expected results, in my case. 
-
-Instead, I wound up needing to both add a `prefs.sh` file and also overwrite some of the values and/or logic set in some of those `etc/config.sh/tool-name` files as well. In particular, I needed to both include a `prefs.sh` file, and override the `metis`, `kahip`, `scotch`, and `zoltan` files before I could build their associated artifacts (`libmetis.so`, `libkahip.so`, etc) without issues. The entire tools configuration infrastructure is mostly a black box to me, so I can't really explain why this is would be the case. I've included all the file edits here in the `OpenFOAM` folder, inside this repository, for your review.
-
 
 ## Installation Topology
 
@@ -567,34 +609,6 @@ sudo mkdir /opt/openfoam
 sudo chown username:username /opt/openfoam
 cp -r repos/OpenFOAM/* /opt/openfoam
 ```
-
-## External Tools Configuration
-
-### Hacking `etc/config.sh/*`
-
-OpenFOAM has several quirks regarding its external dependencies. 
-
-OpenFOAM uses the convention `etc/config.sh/tool_name` to set default external tool folder locations, and a optional `prefs.sh` file inside `etc/` for preferences. So in theory, any configuration changes in `prefs.sh` get picked up during the standard calls to `./Allwmake`. You do not have to put `prefs.sh` there, and calling `foamEtcFile -list` shows all the searched locations. 
-
-However, when I tried calling `./Allwmake` when inside a subfolder, for some reason, it didn't find the `prefs.sh` file and reverted to OpenFOAM's default locations for those tools. But there was also some strange behavior involving the `prefs.sh` file being removed from `etc/` at some point, which may have caused the issue. 
-
-Eventually, I just hard-coded some of the paths inside `etc/config.sh/*` directly to push through and complete the build. I also had to add `export FFTW_DIR=/opt/fftw` to the `etc/config.sh/FFTW` folder.
-
-## Ignored Third-Party Tools
-
-- ADIOS2
-- CCMIO 
-- HDF5 
-- MGridGen
-
-## Stale ParaView Libraries
-
-I built the current version of ParaView after trying `v5.12.1`, the version used in the tarball associated with OpenFOAM `v2606` on OpenFOAM.com's website. Note that brittle dependencies exist between VTK and QT 5 in the only ParaView-aware OpenFOAM component, a module named PVFoamReader. PVFoamReader is also the only tool that requires HDF5 support. There is also an associated visualization component, an in-process off-screen renderer, that uses VTK libraries as well. It may have built on Haswell without issues.
-
-Due to the issues with those incompatible ParaView libraries, rename two `Allwmake` files to `xxxAllwmake`, in the following `openfoam` locations:
-
-- `src/plugins/bindings/vtk-hdf` 
-- `src/modules/visualization`.
 
 ## Copy This Repository's `OpenFOAM/etc` Contents into Target Folder
 
@@ -622,7 +636,7 @@ source /opt/openfoam/etc/prefs.sh
 /./Allwmake-plugins -j
 ```
 
-# Post-Install Environment Clean-Up and Consolidation
+# Post-Install Environment Clean-Up and Folder Consolidation
 
 Once the installation is complete, I consolidated my environment and generated folders, and locked down the installation by granting ownership to `root`. 
 
@@ -660,6 +674,8 @@ rm -rf /opt/openfoam/platforms
 
 exit
 ```
+
+## `~/.bashrc` Clean-Up
 
 Now, source a new version of `.bashrc` with the following contents:
 
@@ -705,8 +721,6 @@ sudo chown root:root /opt/openfoam
 
 ## Hacks
 
-AmgX4Foam's `src/csrMatrix/csrMatrix.h` was missing a `#include <cuda_runtime.h>` statement.
-
 Out of the box, AmgX4Foam's default configuration options limit only a single CUDA arch code, so I changed the behavior of the `-cu` flag so that it is no longer responsible for passing the architecture. Instead, I replaced line 12 in the `wmake/cuda` file: `cuARCH    :=  -m64 -arch=sm_$(NVARCH)` with `cuARCH    :=  -m64 -gencode arch=compute_61,code=sm_61`. I still had to enable CUDA by including the flag though: `./Allwmake -cu 1`. 
 
 Lines 17 in `src/Make/options` and 12 in `wmake/c++` were also removed to complete the build.
@@ -734,18 +748,12 @@ LIB_LIBS = \
     ...
 ```
 
-By default, this installs to the `FOAM_USER_LIBBIN` folder, whether or not that folder exists. `FOAM_USER_LIBBIN` is one of the non-standard directories using OpenFOAM's variable-based naming convention: `~/OpenFOAM/<user name>-<version>/platforms/<arch><compiler><precision><index size><third party folder>/lib`.
+AmgX4Foam's `src/csrMatrix/csrMatrix.h` was also missing a `#include <cuda_runtime.h>` statement.
+
+## Run `Allwmake`
 
 ```bash
 ./Allwmake -cu 1
 ```
 
-# Final `~/.bashrc` Settings
-
-```bash
-export CUDA_HOME=/usr/local/cuda
-export PATH=/opt/scotch/bin:/opt/karypis/bin:/opt/fftw/bin:/opt/umpire/bin:/opt/paraview/bin:/opt/ompi/bin:/opt/prrte/bin:/opt/pmix/bin:/opt/hwloc/bin:/opt/libevent/bin:/opt/ucx/bin:$CUDA_HOME/bin:$PATH
-export LD_LIBRARY_PATH=/opt/petsc/lib:/opt/zoltan/lib:/opt/scotch/lib:/opt/karypis/lib:/opt/amgx/lib:/opt/kahip/lib:/opt/fftw/lib:/opt/hypre/lib:/opt/umpire/lib:/opt/paraview/lib:/opt/ompi/lib:/opt/prrte/lib:/opt/pmix/lib:/opt/hwloc/lib:/opt/libevent/lib:/opt/ucx/lib:$CUDA_HOME/lib64
-
-source /home/user/repos/OpenFOAM_com/OpenFOAM/etc/bashrc
-```
+By default, this installs to the `FOAM_USER_LIBBIN` folder, whether or not that folder exists. Note that `FOAM_USER_LIBBIN` typically uses OpenFOAM's variable-based naming conventions: `~/OpenFOAM/<user name>-<version>/platforms/<arch><compiler><precision><index size><third party folder>/lib`.
