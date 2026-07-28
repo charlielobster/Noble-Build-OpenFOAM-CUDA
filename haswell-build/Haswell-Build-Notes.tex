@@ -1,0 +1,51 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{geometry}
+\geometry{margin=1in}
+
+% This strips numbers from section, subsection, and subsubsection
+\makeatletter
+\renewcommand{\@seccntformat}[1]{}
+\makeatother
+
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{lmodern} 
+
+\lstalias{text}{}
+\lstalias{properties}{}
+
+\definecolor{githubbg}{HTML}{F6F8FA}
+\definecolor{githubborder}{HTML}{E1E4E8}
+
+\lstset{
+  backgroundcolor=\color{githubbg},   
+  frame=single,                       
+  rulecolor=\color{githubborder},     
+  basicstyle=\ttfamily\small,         
+  breaklines=true,                    
+  xleftmargin=10pt,                   
+  xrightmargin=10pt,                  
+  framexleftmargin=5pt,               
+  keepspaces=true                     
+}
+
+\usepackage[
+  fencedCode,
+  hybrid
+]{markdown}
+
+\markdownSetup{
+  renderers = {
+    inputVerbatim = {\lstinputlisting{#1}},
+    inputFencedCode = {\lstinputlisting[language=#2]{#1}}
+  }
+}
+
+\begin{document}
+
+% Embed your external markdown file here
+\markdownInput{Haswell-Build-Notes.md}
+
+\end{document}
