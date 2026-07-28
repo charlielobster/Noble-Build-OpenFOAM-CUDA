@@ -183,6 +183,7 @@ This is confirmed for Haswell too 7/26.
 ```properties
 # Point-to-point Messaging Layer
 pml=ucx
+
 # One-sided Communication Layer
 osc=ucx
 ```
@@ -544,7 +545,7 @@ See the OpenFOAM External Tools Introduction for details and possible issues.
 ## Edit the .bashrc
 
 ```bash
-source /home/user/repos/OpenFOAM_com/OpenFOAM/etc/bashrc
+source /home/user/repos/OpenFOAM/etc/bashrc
 export WM_THIRD_PARTY_DIR=/opt
 ```
 
@@ -581,7 +582,7 @@ AMGX_INC = /opt/amgx/include
 AMGX_LIB = /opt/amgx/lib
 ```
 
-Finally, I had to add these two lines to `EXE_INC` and `LIB_LIBS` accordingly:
+Finally, I had to add these two lines to `EXE_INC` and `LIB_LIBS`:
 
 ```properties
 EXE_INC = \
@@ -609,5 +610,5 @@ export CUDA_HOME=/usr/local/cuda
 export PATH=/opt/scotch/bin:/opt/karypis/bin:/opt/fftw/bin:/opt/umpire/bin:/opt/paraview/bin:/opt/ompi/bin:/opt/prrte/bin:/opt/pmix/bin:/opt/hwloc/bin:/opt/libevent/bin:/opt/ucx/bin:$CUDA_HOME/bin:$PATH
 export LD_LIBRARY_PATH=/opt/petsc/lib:/opt/zoltan/lib:/opt/scotch/lib:/opt/karypis/lib:/opt/amgx/lib:/opt/kahip/lib:/opt/fftw/lib:/opt/hypre/lib:/opt/umpire/lib:/opt/paraview/lib:/opt/ompi/lib:/opt/prrte/lib:/opt/pmix/lib:/opt/hwloc/lib:/opt/libevent/lib:/opt/ucx/lib:$CUDA_HOME/lib64
 
-source /home/user/repos/OpenFOAM_com/OpenFOAM/etc/bashrc
+source /home/user/repos/OpenFOAM/etc/bashrc
 ```

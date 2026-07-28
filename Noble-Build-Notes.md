@@ -87,6 +87,8 @@ From your BIOS, boot from the USB drive and install to the target drive.
 
 "Install latest Graphics and Wifi hardware drivers" was left unchecked for the install. 
 
+You may require a [safe boot reconfiguration](Notes/Driverless-Install.md) during the driver-less install.
+
 # Nvidia drivers
 
 ## Register the CUDA Keyring and Install Drivers
@@ -145,7 +147,7 @@ export LD_LIBRARY_PATH=$CUDA_HOME/lib64
 
 # Track `PATH`, and `LD_LIBRARY_PATH` Variables
 
-Moving forward, inside `~/.bashrc`, track changes following each successful installation of a tool, e.g.:
+Moving forward, inside `~/.bashrc`, track changes following each successful installation of a tool:
 
 ```bash
 ...
@@ -719,11 +721,21 @@ sudo chown root:root /opt/openfoam
 
 # AmgX4Foam
 
-## Hacks
+## Hack `wmake/cuda`
 
-Out of the box, AmgX4Foam's default configuration options limit only a single CUDA arch code, so I changed the behavior of the `-cu` flag so that it is no longer responsible for passing the architecture. Instead, I replaced line 12 in the `wmake/cuda` file: `cuARCH    :=  -m64 -arch=sm_$(NVARCH)` with `cuARCH    :=  -m64 -gencode arch=compute_61,code=sm_61`. I still had to enable CUDA by including the flag though: `./Allwmake -cu 1`. 
+Out of the box, AmgX4Foam's default configuration options limit only a single CUDA arch code, so I changed the behavior of the `-cu` flag so that it is no longer responsible for passing the architecture. Instead, I replaced line 12 (`cuARCH    :=  -m64 -arch=sm_$(NVARCH)`) in the `wmake/cuda` file: 
 
-Lines 17 in `src/Make/options` and 12 in `wmake/c++` were also removed to complete the build.
+```bash
+# Haswell
+(line 12) cuARCH    :=  -m64 -gencode arch=compute_61,code=sm_61
+
+# Threadripper
+cuARCH    :=  -m64 -gencode arch=compute_86,code=sm_86 -gencode arch=compute_120,code=sm_120
+```
+
+I still had to enable CUDA by including the flag though: `./Allwmake -cu 1`. 
+
+Lines 17 in `src/Make/options` and 12 in `wmake/c++` were also removed.
 
 I also had to add 3 lines to the top of `src/Make/options`:
 
@@ -733,7 +745,7 @@ AMGX_INC = /opt/amgx/include
 AMGX_LIB = /opt/amgx/lib
 ```
 
-Finally, I had to add these two lines to `EXE_INC` and `LIB_LIBS` accordingly:
+Finally, I also had to add these two lines to `EXE_INC` and `LIB_LIBS` accordingly:
 
 ```properties
 EXE_INC = \
