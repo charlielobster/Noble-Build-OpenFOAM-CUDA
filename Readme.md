@@ -13,7 +13,7 @@ The repository includes folders containing some OpenFOAM source path overrides i
 
 ## Topology
 
-All the tools and applications used for this configuration are placed in root-owned folders inside `/opt`. Upon completion, the topology should appear as follows:
+All the tools and applications used for this configuration are placed in root-owned folders inside `/opt`. Upon completion, the topology is as follows:
 
 ```bash
 ls /opt
