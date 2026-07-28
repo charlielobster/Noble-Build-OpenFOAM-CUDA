@@ -1,4 +1,7 @@
-# The Noble Build: Configure a CUDA-Aware HPC Node for OpenFOAM
+# The Noble Build 
+Last Updated Tuesday, July 28, 2026
+
+## Configure a CUDA-Aware HPC Node for OpenFOAM
 
 This repository documents the configuration, build, and installation of an optimized, full-suite OpenFOAM instance from source on most CUDA-enabled devices running Ubuntu Noble v24.04. The presumption is that the device is potentially part of a HPC cluster, thus OpenMPI and UCX support are considered requirments. 
 
