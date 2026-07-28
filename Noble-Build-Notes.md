@@ -519,6 +519,8 @@ export PETSC_ARCH_PATH=/opt/petsc
 
 # OpenFOAM
 
+[OpenFOAM Configuration Details](OpenFOAM/OpenFOAM-Configuration.md)
+
 ## Update for 7/26
 
 Definitely need to edit `etc/config.sh/tool-name` files directly with the correct `ARCH_PATH` variables prior to calling `Allwmake`.
