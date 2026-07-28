@@ -1,0 +1,3 @@
+# Scotch 
+export SCOTCH_VERSION="7.0.12"
+export SCOTCH_ARCH_PATH="/opt/scotch"

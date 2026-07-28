@@ -1,0 +1,3 @@
+# Zoltan
+export ZOLTAN_VERSION="3.901"
+export ZOLTAN_ARCH_PATH="/opt/zoltan"

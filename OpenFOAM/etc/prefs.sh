@@ -72,15 +72,13 @@ export ADIOS2_VERSION="none"
 # Visualization and Legacy Wrappers
 
 # ParaView
-export ParaView_VERSION="6.1"
-export ParaView_ARCH_PATH="/opt/paraview"
+export ParaView_VERSION="none"
 
 # paraview-system
 # just ignore
 
 # VTK
-export VTK_VERSION="9.7"
-export VTK_ARCH_PATH="/opt/paraview"
+export VTK_VERSION="none"
 
 # ccmio 
 # not used by this system
