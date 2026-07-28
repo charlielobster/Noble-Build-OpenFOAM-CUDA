@@ -1,4 +1,4 @@
-# ./Allwmake -j:
+# ./Allwmake -j
 
 ```text
 ./Allwmake -j
@@ -8,7 +8,7 @@ clang=
 mpirun=/opt/ompi/bin/mpirun
 make=/usr/bin/make
 cmake=/usr/bin/cmake
-wmake=/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/wmake/wmake
+wmake=/home/user/repos/OpenFOAM_com/OpenFOAM/wmake/wmake
 m4=/usr/bin/m4
 flex=/usr/bin/flex
 
@@ -588,7 +588,7 @@ wmake overCompressibleInterDyMFoam
 Done OpenFOAM applications
 ========================================
 ========================================
-prefix = /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
+prefix = /home/user/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
 
     ignoring possible compilation errors
     make certain to check the output file
@@ -599,7 +599,7 @@ wmake libso
 Starting compile of OpenQBMM with OpenFOAM
   Gcc system compiler
   linux64GccDPInt32Opt, with SYSTEMOPENMPI sys-openmpi
-  prefix = /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
+  prefix = /home/user/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
 
 ========================================
 Compile OpenQBMM libraries
@@ -667,7 +667,7 @@ wmake libso
 Starting compile of adiosFoam with OpenFOAM 
   Gcc system compiler
   linux64GccDPInt32Opt, with SYSTEMOPENMPI sys-openmpi
-  prefix = /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
+  prefix = /home/user/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
 
 ==> adios2 not found?
 Define manually, enable in OpenFOAM etc/bashrc, or try the following [POSIX]:
@@ -688,7 +688,7 @@ wmake libso
 Starting compile of external-solver (petsc) with OpenFOAM
   Gcc system compiler
   linux64GccDPInt32Opt, with SYSTEMOPENMPI sys-openmpi
-  prefix = /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
+  prefix = /home/user/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
 
 wmake(petsc) libso : /opt/petsc
 wmake libso (petsc4Foam)
@@ -732,14 +732,14 @@ The optional plugins can be built separately:
 
 ```
 
+# ./Allwmake-plugins -j
 
-# ./Allwmake-plugins -j:
 ```text
 
 ./Allwmake-plugins -j
 Compiling enabled on 64 cores
 ========================================
-prefix = /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
+prefix = /home/user/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
 
     ignoring possible compilation errors
     make certain to check the output file
@@ -751,7 +751,7 @@ wmake libso
 Starting compile of avalanche with OpenFOAM
   Gcc system compiler
   linux64GccDPInt32Opt, with SYSTEMOPENMPI sys-openmpi
-  prefix = /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
+  prefix = /home/user/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
 
 wmake libso avalanche
 wmake libso solvers
@@ -774,7 +774,7 @@ wmake libso simpleSlope
 
 wmake libso 
 ========================================
-prefix = /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
+prefix = /home/user/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
 
     ignoring possible compilation errors
     make certain to check the output file
@@ -785,7 +785,7 @@ wmake libso
 Starting compile of cfmesh with OpenFOAM 
   Gcc system compiler
   linux64GccDPInt32Opt, with SYSTEMOPENMPI sys-openmpi
-  prefix = /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
+  prefix = /home/user/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
 
 wmake libso meshLibrary
 wmake executables
@@ -828,7 +828,7 @@ wmake libso
 Starting compile of Data-Driven Modelling Special Interest Group with OpenFOAM
   Gcc system compiler
   linux64GccDPInt32Opt, with SYSTEMOPENMPI sys-openmpi
-  prefix = /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
+  prefix = /home/user/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
 
 wmake libso 
 From https://github.com/CrayLabs/SmartRedis
@@ -872,7 +872,7 @@ Using gcc and g++
 -- Skipping Python client build
 -- Configuring done (0.4s)
 -- Generating done (0.0s)
--- Build files have been written to: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/build/Release
+-- Build files have been written to: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/build/Release
 [  1%] Creating directories for 'hiredis'
 [  3%] Performing download step (git clone) for 'hiredis'
 Cloning into 'hiredis'...
@@ -889,7 +889,7 @@ Detected version: 1.3.0
 -- Detecting C compile features - done
 -- Configuring done (0.1s)
 -- Generating done (0.0s)
--- Build files have been written to: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/build/Release/hiredis-prefix/src/hiredis-build
+-- Build files have been written to: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/build/Release/hiredis-prefix/src/hiredis-build
 [ 10%] Performing build step for 'hiredis'
 [ 10%] Building C object CMakeFiles/hiredis.dir/hiredis.c.o
 [ 30%] Building C object CMakeFiles/hiredis.dir/async.c.o
@@ -909,32 +909,32 @@ make[4]: warning: jobserver unavailable: using -j1.  Add '+' to parent make rule
 [100%] Built target hiredis-test
 Install the project...
 -- Install configuration: ""
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/lib/libhiredis.a
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/build/native/hiredis.targets
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/hiredis.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/read.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/sds.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/async.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/alloc.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/sockcompat.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/adapters
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/adapters/redismoduleapi.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/adapters/ae.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/adapters/libhv.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/adapters/ivykis.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/adapters/libevent.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/adapters/qt.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/adapters/libsdevent.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/adapters/glib.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/adapters/poll.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/adapters/libev.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/adapters/macosx.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/adapters/libuv.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/lib/pkgconfig/hiredis.pc
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/lib/cmake/hiredis/hiredis-targets.cmake
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/lib/cmake/hiredis/hiredis-targets-noconfig.cmake
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/lib/cmake/hiredis/hiredis-config.cmake
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/lib/cmake/hiredis/hiredis-config-version.cmake
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/lib/libhiredis.a
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/build/native/hiredis.targets
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/hiredis.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/read.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/sds.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/async.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/alloc.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/sockcompat.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/adapters
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/adapters/redismoduleapi.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/adapters/ae.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/adapters/libhv.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/adapters/ivykis.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/adapters/libevent.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/adapters/qt.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/adapters/libsdevent.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/adapters/glib.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/adapters/poll.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/adapters/libev.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/adapters/macosx.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/hiredis/adapters/libuv.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/lib/pkgconfig/hiredis.pc
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/lib/cmake/hiredis/hiredis-targets.cmake
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/lib/cmake/hiredis/hiredis-targets-noconfig.cmake
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/lib/cmake/hiredis/hiredis-config.cmake
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/lib/cmake/hiredis/hiredis-config-version.cmake
 [ 14%] Completed 'hiredis'
 [ 14%] Built target hiredis
 [ 16%] Creating directories for 'redis++'
@@ -964,7 +964,7 @@ HEAD is now at e30d4c4 update cmake_minimum_required to 3.5
 -- Debian package name: .deb
 -- Configuring done (0.3s)
 -- Generating done (0.0s)
--- Build files have been written to: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/build/Release/redis++-prefix/src/redis++-build
+-- Build files have been written to: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/build/Release/redis++-prefix/src/redis++-build
 [ 25%] Performing build step for 'redis++'
 [  5%] Building CXX object CMakeFiles/redis++_static.dir/src/sw/redis++/command.cpp.o
 [ 11%] Building CXX object CMakeFiles/redis++_static.dir/src/sw/redis++/command_options.cpp.o
@@ -990,40 +990,40 @@ make[4]: warning: jobserver unavailable: using -j1.  Add '+' to parent make rule
 [100%] Built target redis++_static
 Install the project...
 -- Install configuration: "Release"
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/lib/libredis++.a
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/share/cmake/redis++/redis++-targets.cmake
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/share/cmake/redis++/redis++-targets-release.cmake
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/hiredis_features.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/cmd_formatter.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/command.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/command_args.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/command_options.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/connection.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/connection_pool.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/cxx_utils.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/errors.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/tls.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/pipeline.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/queued_redis.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/queued_redis.hpp
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/redis++.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/redis.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/redis.hpp
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/redis_cluster.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/redis_cluster.hpp
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/redis_uri.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/reply.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/sentinel.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/shards.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/shards_pool.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/subscriber.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/transaction.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/utils.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/version.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/patterns/redlock.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/share/cmake/redis++/redis++-config.cmake
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/share/cmake/redis++/redis++-config-version.cmake
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/lib/pkgconfig/redis++.pc
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/lib/libredis++.a
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/share/cmake/redis++/redis++-targets.cmake
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/share/cmake/redis++/redis++-targets-release.cmake
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/hiredis_features.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/cmd_formatter.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/command.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/command_args.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/command_options.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/connection.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/connection_pool.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/cxx_utils.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/errors.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/tls.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/pipeline.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/queued_redis.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/queued_redis.hpp
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/redis++.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/redis.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/redis.hpp
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/redis_cluster.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/redis_cluster.hpp
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/redis_uri.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/reply.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/sentinel.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/shards.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/shards_pool.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/subscriber.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/transaction.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/utils.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/version.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sw/redis++/patterns/redlock.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/share/cmake/redis++/redis++-config.cmake
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/share/cmake/redis++/redis++-config-version.cmake
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/lib/pkgconfig/redis++.pc
 [ 29%] Completed 'redis++'
 [ 29%] Built target redis++
 [ 30%] Building CXX object CMakeFiles/smartredis.dir/src/c/c_client.cpp.o
@@ -1068,68 +1068,68 @@ Install the project...
 Removing artifacts from dependencies
 [100%] Built target smartredis
 -- Install configuration: "Release"
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/lib/libsmartredis.so
--- Up-to-date: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/configoptions.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/command.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/commandreply.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/enum_fortran.inc
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/logger.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/addressanycommand.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/c_logger.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/command.tcc
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/logcontext.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sr_enums.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/dbnode.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/addressatcommand.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/tensorpack.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/srassert.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/pyconfigoptions.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/nonkeyedcommand.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/addressallcommand.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/compoundcommand.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/metadatafield.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/dataset.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/commandlist.tcc
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/gettensorcommand.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/commandlist.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/keyedcommand.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/pyclient.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/dbinfocommand.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/metadata.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/threadpool.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/clusterinfocommand.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/srexception.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/client.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/tensor.tcc
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sharedmemorylist.tcc
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/multikeycommand.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/pipelinereply.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/c_logcontext.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/metadatabuffer.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/stringfield.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/utility.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/scalarfield.tcc
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/address.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/c_configoptions.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/redis.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/redisserver.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/pysrobject.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/singlekeycommand.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/srobject.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/rediscluster.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/pylogcontext.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/pydataset.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sharedmemorylist.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/c_client.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/tensor.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/c_dataset.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/tensorbase.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/scalarfield.h
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/share/cmake/smartredis/smartredis.cmake
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/share/cmake/smartredis/smartredis-release.cmake
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/share/cmake/smartredis/smartredisConfig.cmake
--- Installing: /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/share/cmake/smartredis/smartredisConfigVersion.cmake
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/lib/libsmartredis.so
+-- Up-to-date: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/configoptions.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/command.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/commandreply.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/enum_fortran.inc
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/logger.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/addressanycommand.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/c_logger.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/command.tcc
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/logcontext.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sr_enums.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/dbnode.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/addressatcommand.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/tensorpack.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/srassert.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/pyconfigoptions.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/nonkeyedcommand.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/addressallcommand.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/compoundcommand.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/metadatafield.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/dataset.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/commandlist.tcc
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/gettensorcommand.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/commandlist.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/keyedcommand.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/pyclient.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/dbinfocommand.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/metadata.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/threadpool.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/clusterinfocommand.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/srexception.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/client.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/tensor.tcc
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sharedmemorylist.tcc
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/multikeycommand.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/pipelinereply.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/c_logcontext.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/metadatabuffer.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/stringfield.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/utility.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/scalarfield.tcc
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/address.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/c_configoptions.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/redis.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/redisserver.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/pysrobject.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/singlekeycommand.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/srobject.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/rediscluster.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/pylogcontext.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/pydataset.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/sharedmemorylist.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/c_client.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/tensor.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/c_dataset.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/tensorbase.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/include/scalarfield.h
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/share/cmake/smartredis/smartredis.cmake
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/share/cmake/smartredis/smartredis-release.cmake
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/share/cmake/smartredis/smartredisConfig.cmake
+-- Installing: /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/openfoam-smartsim/smartredis/install/share/cmake/smartredis/smartredisConfigVersion.cmake
 wmake libso src/smartRedis
 wmake libso src/functionObjects
 wmake libso src/displacementSmartSimMotionSolver
@@ -1144,7 +1144,7 @@ wmake libso
 Starting compile of NN_Pred with OpenFOAM
   Gcc system compiler
   linux64GccDPInt32Opt, with SYSTEMOPENMPI sys-openmpi
-  prefix = /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
+  prefix = /home/user/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
 
 ========================================
 Activating environment...
@@ -1153,17 +1153,17 @@ Activating environment...
 Building Predictor-Core...
 ========================================
 Checking and downloading third-party libraries...
-Checking /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/NN_Pred/Predictor-Core/third_party/Predictor-Core/third_party/EIGEN_libs for eigen-3.4.0.tar.gz...
-/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/NN_Pred/Predictor-Core/third_party/Predictor-Core/third_party/EIGEN_libs already exists and is not empty. Skipping download.
-Checking /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/NN_Pred/Predictor-Core/third_party/Predictor-Core/third_party/TF_libs for libtensorflow-cpu-linux-x86_64-2.8.0.tar.gz...
-/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/NN_Pred/Predictor-Core/third_party/Predictor-Core/third_party/TF_libs already exists and is not empty. Skipping download.
-Checking /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/NN_Pred/Predictor-Core/third_party/Predictor-Core/third_party/ONNX_libs for onnxruntime-linux-x64-1.20.1.tgz...
-/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/NN_Pred/Predictor-Core/third_party/Predictor-Core/third_party/ONNX_libs already exists and is not empty. Skipping download.
+Checking /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/NN_Pred/Predictor-Core/third_party/Predictor-Core/third_party/EIGEN_libs for eigen-3.4.0.tar.gz...
+/home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/NN_Pred/Predictor-Core/third_party/Predictor-Core/third_party/EIGEN_libs already exists and is not empty. Skipping download.
+Checking /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/NN_Pred/Predictor-Core/third_party/Predictor-Core/third_party/TF_libs for libtensorflow-cpu-linux-x86_64-2.8.0.tar.gz...
+/home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/NN_Pred/Predictor-Core/third_party/Predictor-Core/third_party/TF_libs already exists and is not empty. Skipping download.
+Checking /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/NN_Pred/Predictor-Core/third_party/Predictor-Core/third_party/ONNX_libs for onnxruntime-linux-x64-1.20.1.tgz...
+/home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/NN_Pred/Predictor-Core/third_party/Predictor-Core/third_party/ONNX_libs already exists and is not empty. Skipping download.
 All required libraries have been checked and downloaded if necessary.
 ========================================
 Compiling Predictor-Core...
-rm -rf /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/NN_Pred/Predictor-Core/outputs/bin/*
-rm -rf /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/NN_Pred/Predictor-Core/outputs/lib/*
+rm -rf /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/NN_Pred/Predictor-Core/outputs/bin/*
+rm -rf /home/user/repos/OpenFOAM_com/OpenFOAM/plugins/data-community/NN_Pred/Predictor-Core/outputs/lib/*
 rm -rf include/ml_predictor.mod
 rm -rf source/ml_predictor.mod
 Environment variable ONNX_HOME not set
@@ -1183,14 +1183,14 @@ wmake libso
 Starting compile of Turbulence Technical Committee with OpenFOAM
   Gcc system compiler
   linux64GccDPInt32Opt, with SYSTEMOPENMPI sys-openmpi
-  prefix = /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
+  prefix = /home/user/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
 
 wmake libso 
 2026-07-25 22:26:03 -0400
 Starting compile of kOmegaSSTPDA
   Gcc system compiler
   linux64GccDPInt32Opt, with SYSTEMOPENMPI sys-openmpi
-  prefix = /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
+  prefix = /home/user/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
 
   Rebuilding for OpenFOAM = v2606 (2606).
 
@@ -1201,7 +1201,7 @@ wmake libso (libWallModelledLES)
 Starting compile of libWallModelledLES
   Gcc system compiler
   linux64GccDPInt32Opt, with SYSTEMOPENMPI sys-openmpi
-  prefix = /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
+  prefix = /home/user/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
 
   Rebuilding for OpenFOAM = v2606 (2606).
 
@@ -1216,7 +1216,7 @@ wmake libso
 Starting compile of EllipticBlending
   Gcc system compiler
   linux64GccDPInt32Opt, with SYSTEMOPENMPI sys-openmpi
-  prefix = /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
+  prefix = /home/user/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
 
   Rebuilding for OpenFOAM = v2606 (2606).
 
@@ -1226,7 +1226,7 @@ wmake libso
 Starting compile of dynamicSmagorinsky
   Gcc system compiler
   linux64GccDPInt32Opt, with SYSTEMOPENMPI sys-openmpi
-  prefix = /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
+  prefix = /home/user/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
 
   Rebuilding for OpenFOAM = v2606 (2606).
 
@@ -1267,7 +1267,7 @@ wmake libso
 Starting compile of kOmegaSSTCND
   Gcc system compiler
   linux64GccDPInt32Opt, with SYSTEMOPENMPI sys-openmpi
-  prefix = /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
+  prefix = /home/user/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
 
   Rebuilding for OpenFOAM = v2606 (2606).
 
@@ -1278,7 +1278,7 @@ wmake libso
 Starting compile of SpalartAllmarasRC
   Gcc system compiler
   linux64GccDPInt32Opt, with SYSTEMOPENMPI sys-openmpi
-  prefix = /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
+  prefix = /home/user/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
 
   Rebuilding for OpenFOAM = v2606 (2606).
 
@@ -1289,7 +1289,7 @@ wmake libso
 Starting compile of gammaSST
   Gcc system compiler
   linux64GccDPInt32Opt, with SYSTEMOPENMPI sys-openmpi
-  prefix = /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
+  prefix = /home/user/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
 
   Rebuilding for OpenFOAM = v2606 (2606).
 
@@ -1300,24 +1300,24 @@ wmake libso
 Starting compile of SpalartAllmarasH
   Gcc system compiler
   linux64GccDPInt32Opt, with SYSTEMOPENMPI sys-openmpi
-  prefix = /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
+  prefix = /home/user/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt
 
   Rebuilding for OpenFOAM = v2606 (2606).
 
     ln: ../turbulenceModels/lnInclude
     ln: ./lnInclude
 Making dependencies: myTurbulentTransportModels.C
-g++ -std=c++17 -m64 -pthread -DOPENFOAM=2606 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -Wno-unknown-pragmas -O3  -DNoRepository -ftemplate-depth=1000  -I../turbulenceModels/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/finiteVolume/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/meshTools/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/transportModels -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/TurbulenceModels/turbulenceModels/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/TurbulenceModels/incompressible/lnInclude -iquote. -IlnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/OpenFOAM/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/OSspecific/POSIX/lnInclude   -fPIC -c turbulentTransportModels/myTurbulentTransportModels.C -o /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/build/linux64GccDPInt32Opt/plugins/turbulence-community/HelicitySpalartAllmaras/incompressible/turbulentTransportModels/myTurbulentTransportModels.o
-g++ -std=c++17 -m64 -pthread -DOPENFOAM=2606 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -Wno-unknown-pragmas -O3  -DNoRepository -ftemplate-depth=1000  -I../turbulenceModels/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/finiteVolume/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/meshTools/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/transportModels -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/TurbulenceModels/turbulenceModels/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/TurbulenceModels/incompressible/lnInclude -iquote. -IlnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/OpenFOAM/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/OSspecific/POSIX/lnInclude   -fPIC -shared -Xlinker --add-needed -Xlinker --no-as-needed  /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/build/linux64GccDPInt32Opt/plugins/turbulence-community/HelicitySpalartAllmaras/incompressible/turbulentTransportModels/myTurbulentTransportModels.o -L/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt/lib \
-    -lturbulenceModels -lfiniteVolume -lmeshTools -lincompressibleTransportModels -lincompressibleTurbulenceModels  -o /home/skooby/OpenFOAM/skooby-v2606/platforms/linux64GccDPInt32Opt/lib/libSAHIncompressibleTurbulenceModel.so
+g++ -std=c++17 -m64 -pthread -DOPENFOAM=2606 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -Wno-unknown-pragmas -O3  -DNoRepository -ftemplate-depth=1000  -I../turbulenceModels/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/finiteVolume/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/meshTools/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/transportModels -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/TurbulenceModels/turbulenceModels/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/TurbulenceModels/incompressible/lnInclude -iquote. -IlnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/OpenFOAM/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/OSspecific/POSIX/lnInclude   -fPIC -c turbulentTransportModels/myTurbulentTransportModels.C -o /home/user/repos/OpenFOAM_com/OpenFOAM/build/linux64GccDPInt32Opt/plugins/turbulence-community/HelicitySpalartAllmaras/incompressible/turbulentTransportModels/myTurbulentTransportModels.o
+g++ -std=c++17 -m64 -pthread -DOPENFOAM=2606 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -Wno-unknown-pragmas -O3  -DNoRepository -ftemplate-depth=1000  -I../turbulenceModels/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/finiteVolume/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/meshTools/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/transportModels -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/TurbulenceModels/turbulenceModels/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/TurbulenceModels/incompressible/lnInclude -iquote. -IlnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/OpenFOAM/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/OSspecific/POSIX/lnInclude   -fPIC -shared -Xlinker --add-needed -Xlinker --no-as-needed  /home/user/repos/OpenFOAM_com/OpenFOAM/build/linux64GccDPInt32Opt/plugins/turbulence-community/HelicitySpalartAllmaras/incompressible/turbulentTransportModels/myTurbulentTransportModels.o -L/home/user/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt/lib \
+    -lturbulenceModels -lfiniteVolume -lmeshTools -lincompressibleTransportModels -lincompressibleTurbulenceModels  -o /home/user/OpenFOAM/user-v2606/platforms/linux64GccDPInt32Opt/lib/libSAHIncompressibleTurbulenceModel.so
     ln: ../turbulenceModels/lnInclude
     ln: ./lnInclude
 Making dependencies: myTurbulentFluidThermoModels.C
 Making dependencies: compressibleTurbulenceModel.C
-g++ -std=c++17 -m64 -pthread -DOPENFOAM=2606 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -Wno-unknown-pragmas -O3  -DNoRepository -ftemplate-depth=1000  -I../turbulenceModels/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/finiteVolume/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/meshTools/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/transportModels/compressible/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/basic/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/radiation/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/specie/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/solidThermo/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/solidSpecie/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/thermophysicalProperties/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/TurbulenceModels/turbulenceModels/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/TurbulenceModels/compressible/lnInclude -iquote. -IlnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/OpenFOAM/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/OSspecific/POSIX/lnInclude   -fPIC -c compressibleTurbulenceModel.C -o /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/build/linux64GccDPInt32Opt/plugins/turbulence-community/HelicitySpalartAllmaras/compressible/compressibleTurbulenceModel.o
-g++ -std=c++17 -m64 -pthread -DOPENFOAM=2606 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -Wno-unknown-pragmas -O3  -DNoRepository -ftemplate-depth=1000  -I../turbulenceModels/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/finiteVolume/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/meshTools/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/transportModels/compressible/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/basic/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/radiation/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/specie/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/solidThermo/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/solidSpecie/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/thermophysicalProperties/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/TurbulenceModels/turbulenceModels/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/TurbulenceModels/compressible/lnInclude -iquote. -IlnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/OpenFOAM/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/OSspecific/POSIX/lnInclude   -fPIC -c turbulentFluidThermoModels/myTurbulentFluidThermoModels.C -o /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/build/linux64GccDPInt32Opt/plugins/turbulence-community/HelicitySpalartAllmaras/compressible/turbulentFluidThermoModels/myTurbulentFluidThermoModels.o
-g++ -std=c++17 -m64 -pthread -DOPENFOAM=2606 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -Wno-unknown-pragmas -O3  -DNoRepository -ftemplate-depth=1000  -I../turbulenceModels/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/finiteVolume/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/meshTools/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/transportModels/compressible/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/basic/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/radiation/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/specie/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/solidThermo/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/solidSpecie/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/thermophysicalProperties/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/TurbulenceModels/turbulenceModels/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/TurbulenceModels/compressible/lnInclude -iquote. -IlnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/OpenFOAM/lnInclude -I/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/src/OSspecific/POSIX/lnInclude   -fPIC -shared -Xlinker --add-needed -Xlinker --no-as-needed  /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/build/linux64GccDPInt32Opt/plugins/turbulence-community/HelicitySpalartAllmaras/compressible/compressibleTurbulenceModel.o /media/skooby/data/repos/OpenFOAM_com/OpenFOAM/build/linux64GccDPInt32Opt/plugins/turbulence-community/HelicitySpalartAllmaras/compressible/turbulentFluidThermoModels/myTurbulentFluidThermoModels.o -L/media/skooby/data/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt/lib \
-    -lcompressibleTransportModels -lfiniteVolume -lmeshTools -lradiationModels -lfluidThermophysicalModels -lsolidThermo -lsolidSpecie -lturbulenceModels -lspecie -lcompressibleTurbulenceModels  -o /home/skooby/OpenFOAM/skooby-v2606/platforms/linux64GccDPInt32Opt/lib/libSAHCompressibleTurbulenceModel.so
+g++ -std=c++17 -m64 -pthread -DOPENFOAM=2606 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -Wno-unknown-pragmas -O3  -DNoRepository -ftemplate-depth=1000  -I../turbulenceModels/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/finiteVolume/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/meshTools/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/transportModels/compressible/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/basic/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/radiation/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/specie/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/solidThermo/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/solidSpecie/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/thermophysicalProperties/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/TurbulenceModels/turbulenceModels/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/TurbulenceModels/compressible/lnInclude -iquote. -IlnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/OpenFOAM/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/OSspecific/POSIX/lnInclude   -fPIC -c compressibleTurbulenceModel.C -o /home/user/repos/OpenFOAM_com/OpenFOAM/build/linux64GccDPInt32Opt/plugins/turbulence-community/HelicitySpalartAllmaras/compressible/compressibleTurbulenceModel.o
+g++ -std=c++17 -m64 -pthread -DOPENFOAM=2606 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -Wno-unknown-pragmas -O3  -DNoRepository -ftemplate-depth=1000  -I../turbulenceModels/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/finiteVolume/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/meshTools/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/transportModels/compressible/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/basic/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/radiation/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/specie/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/solidThermo/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/solidSpecie/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/thermophysicalProperties/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/TurbulenceModels/turbulenceModels/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/TurbulenceModels/compressible/lnInclude -iquote. -IlnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/OpenFOAM/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/OSspecific/POSIX/lnInclude   -fPIC -c turbulentFluidThermoModels/myTurbulentFluidThermoModels.C -o /home/user/repos/OpenFOAM_com/OpenFOAM/build/linux64GccDPInt32Opt/plugins/turbulence-community/HelicitySpalartAllmaras/compressible/turbulentFluidThermoModels/myTurbulentFluidThermoModels.o
+g++ -std=c++17 -m64 -pthread -DOPENFOAM=2606 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -Wno-unknown-pragmas -O3  -DNoRepository -ftemplate-depth=1000  -I../turbulenceModels/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/finiteVolume/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/meshTools/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/transportModels/compressible/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/basic/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/radiation/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/specie/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/solidThermo/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/solidSpecie/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/thermophysicalModels/thermophysicalProperties/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/TurbulenceModels/turbulenceModels/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/TurbulenceModels/compressible/lnInclude -iquote. -IlnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/OpenFOAM/lnInclude -I/home/user/repos/OpenFOAM_com/OpenFOAM/src/OSspecific/POSIX/lnInclude   -fPIC -shared -Xlinker --add-needed -Xlinker --no-as-needed  /home/user/repos/OpenFOAM_com/OpenFOAM/build/linux64GccDPInt32Opt/plugins/turbulence-community/HelicitySpalartAllmaras/compressible/compressibleTurbulenceModel.o /home/user/repos/OpenFOAM_com/OpenFOAM/build/linux64GccDPInt32Opt/plugins/turbulence-community/HelicitySpalartAllmaras/compressible/turbulentFluidThermoModels/myTurbulentFluidThermoModels.o -L/home/user/repos/OpenFOAM_com/OpenFOAM/platforms/linux64GccDPInt32Opt/lib \
+    -lcompressibleTransportModels -lfiniteVolume -lmeshTools -lradiationModels -lfluidThermophysicalModels -lsolidThermo -lsolidSpecie -lturbulenceModels -lspecie -lcompressibleTurbulenceModels  -o /home/user/OpenFOAM/user-v2606/platforms/linux64GccDPInt32Opt/lib/libSAHCompressibleTurbulenceModel.so
 
 2026-07-25 22:26:31 -0400
 ========================================
