@@ -717,7 +717,8 @@ Finally, lock the folder down:
 sudo chown root:root /opt/openfoam
 ```
 
-# AmgX4Foam (Update: 7/30 - Having Issues if Using Cleaned-up Env Vars) 
+# AmgX4Foam (Under Construction)
+Update: 7/30 - Having Issues if Using Cleaned-up Env Vars
 
 ## Hack `wmake/cuda`
 
