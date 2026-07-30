@@ -55,3 +55,4 @@ ls /opt
 amgx  hwloc  kahip    libevent  ompi      paraview  pmix   scotch  umpire
 fftw  hypre  karypis  nvidia    openfoam  petsc     prrte  ucx     zoltan
 ```
+openfoam cuda hpc openmpi amgx cfd ubuntu-2404 nvidia
