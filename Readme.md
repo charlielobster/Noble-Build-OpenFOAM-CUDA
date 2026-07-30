@@ -31,7 +31,7 @@ Forks and/or clones were made of the following repositories:
 - https://github.com/KarypisLab/ParMETIS.git
 - https://gitlab.inria.fr/scotch/scotch.git
 - https://github.com/sandialabs/Zoltan
-- https://github.com/amgx/amgx.git
+- https://github.com/NVIDIA/amgx.git
 - https://github.com/petsc/PETSc.git
 - https://gitlab.com/openfoam/core/OpenFOAM.git
 - https://gitlab.hpc.cineca.it/exafoam/foamExternalSolvers
