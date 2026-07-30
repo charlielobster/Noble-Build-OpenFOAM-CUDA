@@ -48,3 +48,31 @@ git commit -m "Added OpenFOAM .com submodules"
 git push -u origin main
 ```
 
+# Consolidated External Tool Submodules [Folder](../Tools/)
+
+```bash
+# inside this repository
+mkdir Tools && cd Tools
+git submodule add https://github.com/openucx/ucx
+git submodule add https://github.com/libevent/libevent.git
+git submodule add https://github.com/open-mpi/hwloc.git
+git submodule add https://github.com/openpmix/openpmix.git
+git submodule add https://github.com/openpmix/prrte.git
+git submodule add https://github.com/open-mpi/ompi.git
+git submodule add https://github.com/Kitware/ParaView.git
+git submodule add https://github.com/LLNL/Umpire.git
+git submodule add https://github.com/hypre-space/hypre.git
+git submodule add https://github.com/FFTW/fftw3.git
+git submodule add https://github.com/KaHIP/KaHIP.git
+git submodule add https://github.com/KarypisLab/GKlib.git
+git submodule add https://github.com/KarypisLab/METIS.git
+git submodule add https://github.com/KarypisLab/ParMETIS.git
+git submodule add https://gitlab.inria.fr/scotch/scotch.git
+git submodule add https://github.com/sandialabs/Zoltan
+git submodule add https://github.com/amgx/amgx.git
+git submodule add https://github.com/petsc/PETSc.git
+git submodule add https://gitlab.com/openfoam/core/OpenFOAM.git
+git submodule add https://gitlab.hpc.cineca.it/exafoam/foamExternalSolvers
+git add .
+git commit -m "All Tools"
+```
