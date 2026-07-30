@@ -1,0 +1,15 @@
+[submodule "Tools/libevent"]
+	path = Tools/libevent
+	url = https://github.com/libevent/libevent.git
+[submodule "Tools/hwloc"]
+	path = Tools/hwloc
+	url = https://github.com/open-mpi/hwloc.git
+[submodule "Tools/prrte"]
+	path = Tools/prrte
+	url = https://github.com/open-mpi/prrte.git
+[submodule "Tools/ompi"]
+	path = Tools/ompi
+	url = https://github.com/open-mpi/ompi.git
+[submodule "Tools/ucx"]
+	path = Tools/ucx
+	url = https://github.com/openucx/ucx
