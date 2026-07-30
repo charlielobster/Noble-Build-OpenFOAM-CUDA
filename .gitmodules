@@ -1,3 +1,6 @@
+[submodule "Tools/ucx"]
+	path = Tools/ucx
+	url = https://github.com/openucx/ucx.git
 [submodule "Tools/libevent"]
 	path = Tools/libevent
 	url = https://github.com/libevent/libevent.git
@@ -7,9 +10,60 @@
 [submodule "Tools/prrte"]
 	path = Tools/prrte
 	url = https://github.com/open-mpi/prrte.git
+[submodule "Tools/pmix"]
+	path = Tools/openpmix
+	url = https://github.com/open-mpi/openpmix.git
 [submodule "Tools/ompi"]
 	path = Tools/ompi
 	url = https://github.com/open-mpi/ompi.git
-[submodule "Tools/ucx"]
-	path = Tools/ucx
-	url = https://github.com/openucx/ucx
+[submodule "Tools/Umpire"]
+	path = Tools/Umpire
+	url = https://github.com/LLNL/Umpire.git
+[submodule "Tools/hypre"]
+	path = Tools/hypre
+	url = https://github.com/hypre-space/hypre.git
+[submodule "Tools/ParaView"]
+	path = Tools/ParaView
+	url = https://github.com/Kitware/ParaView.git
+[submodule "Tools/FFTW"]
+	path = Tools/FFTW
+	url = https://github.com/FFTW/fftw3.git
+[submodule "Tools/KaHIP"]
+	path = Tools/KaHIP
+	url = https://github.com/KaHIP/KaHIP.git
+[submodule "Tools/GKlib"]
+	path = Tools/GKlib
+	url = https://github.com/KarypisLab/GKlib.git
+[submodule "Tools/METIS"]
+	path = Tools/METIS
+	url = https://github.com/KarypisLab/METIS.git
+[submodule "Tools/ParMETIS"]
+	path = Tools/ParMETIS
+	url = https://github.com/KarypisLab/ParMETIS.git
+[submodule "Tools/Scotch"]
+	path = Tools/Scotch
+	url = https://gitlab.inria.fr/scotch/scotch.git
+[submodule "Tools/Zoltan"]
+	path = Tools/Zoltan
+	url = https://github.com/sandialabs/Zoltan
+[submodule "Tools/amgx"]
+	path = Tools/amgx
+	url = https://github.com/amgx/amgx.git
+[submodule "Tools/PETSc"]
+	path = Tools/PETSc
+	url = https://github.com/petsc/PETSc.git
+[submodule "Tools/OpenFOAM"]
+	path = Tools/OpenFOAM
+	url = https://gitlab.com/openfoam/core/OpenFOAM.git
+[submodule "Tools/foamExternalSolvers"]
+	path = Tools/foamExternalSolvers
+	url = https://gitlab.hpc.cineca.it/exafoam/foamExternalSolvers
+[submodule "Tools/openpmix"]
+	path = Tools/openpmix
+	url = https://github.com/openpmix/openpmix.git
+[submodule "Tools/fftw3"]
+	path = Tools/fftw3
+	url = https://github.com/FFTW/fftw3.git
+[submodule "Tools/scotch"]
+	path = Tools/scotch
+	url = https://gitlab.inria.fr/scotch/scotch.git
