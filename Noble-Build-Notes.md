@@ -636,7 +636,7 @@ Rename the `Allwmake` files to `xxxAllwmake` in the following `openfoam` locatio
 /./Allwmake-plugins -j
 ```
 
-# Post-Install Environment Clean-Up and Folder Consolidation
+## Post-Install Environment Clean-Up and Folder Consolidation
 
 Once the installation is complete, I consolidated my environment and generated folders, and locked down the installation by granting ownership to `root`. 
 
