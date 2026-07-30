@@ -1,28 +1,26 @@
 # Noble Build Notes 
-Last Modified Mon July 27 2026
+Last Modified Wednesday July 29 2026
 
-# OpenFOAM Configuration Introduction
+## OpenFOAM Configuration Introduction
 
-OpenFOAM uses a custom build tool called `Allwmake`. Similar to most `make` tools, `Allwmake` looks for an `Allwmake` file and only builds subfolders containing one. You can run `./Allwmake` multiple times and it just picks up wherever it left off. 
+In this walkthrough, OpenFOAM is build as the penultimate tool on top of a large pile of supporting tools. As such, they are all aware of one another and conventions used are organized accordingly around OpenFOAM. OpenFOAM uses a custom build tool called `Allwmake`. Similar to other `make` tools, `Allwmake` only builds files in subfolders containing an `Allwmake` file. You can run `./Allwmake` multiple times, and it just picks up wherever it left off. 
 
-Although built from a relatively simple set of `Allwmake` commands, OpenFOAM uses a complex and opaque configuration and build process under the hood that automatically sets and edits multiple environment variables, and creates numerous new paths and folders. As part of the normal documented build process, users are directed to source the `etc/bashrc` in the root OpenFOAM directory to kick off this process. This `bashrc` file generates or changes 60 environment variables.
+Although built from a relatively simple pair of `Allwmake` commands, OpenFOAM uses a complex and, for me, somewhat opaque configuration and build process under the hood that automatically sets and edits multiple environment variables and creates numerous new paths and folders. As part of the normal documented build process, users are directed to source the `OpenFOAM/etc/bashrc` in the root OpenFOAM directory to kick off this process. This `bashrc` file generates or changes 60 environment variables (a reverse-engineered list can be found [here](Notes/OpenFOAM-Environment-Variables.md))
 
-Some of the expected configuration functionality is broken for my Ubuntu instance, in particular regarding external tool mappings. OpenFOAM uses a `etc/config.sh/tool-name` convention for settings paths, along with an associated, user-created `etc/prefs.sh` file for customization and overriding. However, in addition to defining variables in these `tool-name` files, there is also some embedded logic in some cases, and that logic didn't always end up producing the expected results, in my case. 
+Some of the expected configuration functionality was broken for my Ubuntu instance out of the box, in particular regarding external tool mappings. OpenFOAM uses a `etc/config.sh/tool-name` convention for settings paths, along with an associated, user-created `etc/prefs.sh` file for customization and overriding. However, in addition to defining variables in these `tool-name` files, there is also some embedded logic in some cases, and that logic didn't always end up producing the expected results, in my case. 
 
-Instead, I wound up needing to both add a `prefs.sh` file and also overwrite some of the values and/or logic set in some of those `etc/config.sh/tool-name` files as well. In particular, I needed to both include a `prefs.sh` file, and override the `metis`, `kahip`, `scotch`, and `zoltan` files before I could build their associated artifacts (`libmetis.so`, `libkahip.so`, etc) without issues. The entire tools configuration infrastructure is mostly a black box to me, so I can't really explain why this is would be the case. I've included all the file edits here in the `OpenFOAM` folder inside this repository.
+Instead, I wound up needing to both add a `prefs.sh` file and also overwrite some of the values and/or logic set in some of those `etc/config.sh/tool-name` files as well. In particular, I needed to both include a `prefs.sh` file, and override the `metis`, `kahip`, `scotch`, and `zoltan` files before I could build their associated artifacts (`libmetis.so`, `libkahip.so`, etc) without issues. Even then, I still had to call the `prefs.sh` file <i>again</i>, after sourcing `bashrc`. The entire tools configuration infrastructure is mostly a black box to me, so I can't really explain why this is was the case. I've included all the file edits here in the `OpenFOAM` folder inside this repository.
 
+By convention, all the tools installed for this build use a lower-case naming convention and installed to the `/opt` folder. The OpenFOAM build is installed to `/opt/openfoam`. 
 
-## External Tools Configuration
+## Stale/Ignored ParaView Libraries
 
-### Hacking `etc/config.sh/*`
+I built the current version of ParaView after trying to build `v5.12.1`, the version used in the tarball associated with OpenFOAM `v2606` (the version used in this document) on OpenFOAM.com's website. Brittle dependencies exist between VTK and QT 5 and OpenFOAM's only ParaView-aware component, a module named PVFoamReader. PVFoamReader is also the only tool that requires HDF5 support. There is also another associated visualization component, an in-process off-screen renderer, that uses VTK libraries as well.
 
-OpenFOAM has several quirks regarding its external dependencies. 
+Due to the issues with those incompatible ParaView libraries, start the configuration by renaming two `Allwmake` files to `xxxAllwmake`, in the following `openfoam` locations:
 
-OpenFOAM uses the convention `etc/config.sh/tool_name` to set default external tool folder locations, and a optional `prefs.sh` file inside `etc/` for preferences. So in theory, any configuration changes in `prefs.sh` get picked up during the standard calls to `./Allwmake`. You do not have to put `prefs.sh` there, and calling `foamEtcFile -list` shows all the searched locations. 
-
-However, when I tried calling `./Allwmake` when inside a subfolder, for some reason, it didn't find the `prefs.sh` file and reverted to OpenFOAM's default locations for those tools. But there was also some strange behavior involving the `prefs.sh` file being removed from `etc/` at some point, which may have caused the issue. 
-
-Eventually, I just hard-coded some of the paths inside `etc/config.sh/*` directly to push through and complete the build. I also had to add `export FFTW_DIR=/opt/fftw` to the `etc/config.sh/FFTW` folder.
+- `src/plugins/bindings/vtk-hdf` 
+- `src/modules/visualization`
 
 ## Ignored Third-Party Tools
 
@@ -31,16 +29,7 @@ Eventually, I just hard-coded some of the paths inside `etc/config.sh/*` directl
 - HDF5 
 - MGridGen
 
-## Stale ParaView Libraries
-
-I built the current version of ParaView after trying `v5.12.1`, the version used in the tarball associated with OpenFOAM `v2606` on OpenFOAM.com's website. Note that brittle dependencies exist between VTK and QT 5 in the only ParaView-aware OpenFOAM component, a module named PVFoamReader. PVFoamReader is also the only tool that requires HDF5 support. There is also an associated visualization component, an in-process off-screen renderer, that uses VTK libraries as well. It may have built on Haswell without issues.
-
-Due to the issues with those incompatible ParaView libraries, rename two `Allwmake` files to `xxxAllwmake`, in the following `openfoam` locations:
-
-- `src/plugins/bindings/vtk-hdf` 
-- `src/modules/visualization`.
-
-# Build Order
+# Tool Installation Order
 
 ## Core GPU/MPI Libraries
 
@@ -71,7 +60,7 @@ Due to the issues with those incompatible ParaView libraries, rename two `Allwma
 - OpenFOAM
 - AmgX4Foam
 
-# Install Ubuntu 24.04.4
+# Ubuntu 24.04.4 Installation
 
 Choose a minimal install, and do not install any Nvidia drivers yet.
 
@@ -85,7 +74,7 @@ Choose a minimal install, and do not install any Nvidia drivers yet.
 
 From your BIOS, boot from the USB drive and install to the target drive. 
 
-"Install latest Graphics and Wifi hardware drivers" was left unchecked for the install. 
+<i>"Install latest Graphics and Wifi hardware drivers"</i> was left <b>unchecked</b> for this document. 
 
 You may require a [safe boot reconfiguration](Notes/Driverless-Install.md) during the driver-less install.
 
@@ -145,7 +134,7 @@ export PATH=$CUDA_HOME/bin
 export LD_LIBRARY_PATH=$CUDA_HOME/lib64
 ```
 
-# Track `PATH`, and `LD_LIBRARY_PATH` Variables
+## Track `PATH`, and `LD_LIBRARY_PATH` Variables
 
 Moving forward, inside `~/.bashrc`, track changes following each successful installation of a tool:
 
@@ -183,7 +172,7 @@ sudo apt install build-essential automake autoconf pkg-config libtool
 
 # OpenMPI Dependencies
 
-## `libevent`
+## Libevent
 
 ```bash
 cd libevent
@@ -196,7 +185,7 @@ make verify
 sudo make install
 ```
 
-## `hwloc`
+## Hwloc
 
 ```bash
 cd hwloc
@@ -250,9 +239,9 @@ make -j$(nproc)
 sudo make install
 ```
 
-## Changes to `ompi/etc/openmpi-mca-params.conf`
+### `ompi/etc/openmpi-mca-params.conf` Changes
 
-An important tweak for a custom UCX set-up. Doing this prevents `ob1` from being the highest prioritized provider in the stack. Instead, `ucx` is always picked. This helps in most cases, but this configuration could also cause errors too. It is still a little early to say anything with certainty. Failing to do so generates an error during PETSc's `make check`.
+Failing to do this generates an error during PETSc's `make check`. It prevents `ob1` from being the highest prioritized provider in the stack during these checks, and instead `ucx` is always picked.
 
 ```text
 # Point-to-point Messaging Layer
@@ -262,7 +251,7 @@ pml=ucx
 osc=ucx
 ```
 
-## OpenMPI `openfoam/etc/prefs.sh` Changes
+### OpenMPI `openfoam/etc/prefs.sh` Changes
 
 ```bash
 export MPI_ARCH_PATH=/opt/ompi
@@ -283,21 +272,21 @@ git clone --recursive https://github.com/Kitware/ParaView.git
 cd ParaView 
 mkdir paraview-build && cd paraview-build
 cmake -GNinja -DCMAKE_INSTALL_PREFIX=/opt/paraview -DPARAVIEW_USE_PYTHON=ON -DPARAVIEW_USE_CUDA=ON -DPARAVIEW_USE_MPI=ON -DCMAKE_CUDA_ARCHITECTURES="61" -DVTK_SMP_IMPLEMENTATION_TYPE=TBB -DCMAKE_BUILD_TYPE=Release ..
+```
 
-# ninja -j runs out of memory and always had to be re-run a couple of times on both machines. 
-# build feedback is minimal. some libraries take several minutes to build.
-# somewhere around 10k/24k objects, I lowered the CPU count down to around on fourth of the available cores.
-# apparently, this gives ninja or cmake more memory for some of the larger objects.
-# ninja -j$(nproc) completely failed on TR.
-# Apparently, there are known issues with how ninja handles large core sizes on some AMD CPUs.
-# I had to use cmake --build . -j$(nproc) to finally complete the process. 
+### Ninja Memory Issues
 
+`ninja -j` runs out of memory and always had to be re-run a couple of times on both machines. Build feedback can be minimal and some libraries take several minutes to build. Somewhere around halfway, I lowered the CPU count down to around on fourth of the available cores sometimes. Apparently, this gives ninja or cmake more memory for some of the larger objects.
+
+`ninja -j$(nproc)` completely fails on TR. Apparently, there are issues with how `ninja` handles large core sizes on some AMD CPUs. I occasionally used `cmake --build . -j$(nproc)` to complete the process. 
+
+```
 ninja -j$(nproc) 
 # or use cmake --build . -j$(nproc)
 sudo ninja install
 ```
 
-## ParaView and VTK `etc/prefs.sh` Changes
+## ParaView and VTK `openfoam/etc/prefs.sh` Changes
 
 ```bash
 export ParaView_VERSION="none"
@@ -733,7 +722,7 @@ Out of the box, AmgX4Foam's default configuration options limit only a single CU
 cuARCH    :=  -m64 -gencode arch=compute_86,code=sm_86 -gencode arch=compute_120,code=sm_120
 ```
 
-I still had to enable CUDA by including the flag though: `./Allwmake -cu 1`. 
+However, I still had to enable CUDA for the compilation by including the flag though: `./Allwmake -cu 1`. 
 
 Lines 17 in `src/Make/options` and 12 in `wmake/c++` were also removed.
 
