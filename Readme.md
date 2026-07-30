@@ -1,7 +1,7 @@
 # The Noble Build 
 Last Updated Wednesday, July 29, 2026
 
-## Configure and Build CUDA-Aware HPC Node for OpenFOAM
+## Configure and Build CUDA-Aware HPC Node for OpenFOAM on Ubuntu Noble
 
 This repository documents the configuration, build, and installation from source repositiories of an optimized, CUDA-enabled, high-performance computing (HPC) device running OpenFOAM's full suite of tools on Ubuntu Noble v24.04. The PC is presumed to potentially be a node in a super-computing cluster. These include configuration from source of external tools OpenFOAM has awareness support for, such as PETSc, METIS, Scotch, FFTW, etc - along with parallel-computing and CUDA-aware tools such as UCX, OpenMPI, Umpire, Hypre, and AMGX.
 
