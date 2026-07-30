@@ -46,9 +46,6 @@
 [submodule "Tools/Zoltan"]
 	path = Tools/Zoltan
 	url = https://github.com/sandialabs/Zoltan
-[submodule "Tools/amgx"]
-	path = Tools/amgx
-	url = https://github.com/amgx/amgx.git
 [submodule "Tools/PETSc"]
 	path = Tools/PETSc
 	url = https://github.com/petsc/PETSc.git
@@ -67,3 +64,6 @@
 [submodule "Tools/scotch"]
 	path = Tools/scotch
 	url = https://gitlab.inria.fr/scotch/scotch.git
+[submodule "Tools/amgx"]
+	path = Tools/amgx
+	url = https://github.com/NVIDIA/amgx.git
