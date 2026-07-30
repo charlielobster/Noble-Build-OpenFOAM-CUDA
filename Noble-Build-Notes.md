@@ -1,7 +1,7 @@
 # The Noble Build Notes 
 Last Modified Wednesday July 29 2026
 
-## OpenFOAM Configuration Introduction
+## OpenFOAM Tools Configuration Introduction
 
 In this walkthrough, OpenFOAM is built as the penultimate tool on top of a large pile of supporting tools. Many are aware of one another, and conventions are therefore organized accordingly around OpenFOAM. 
 
