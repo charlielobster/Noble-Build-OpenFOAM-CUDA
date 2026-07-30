@@ -3,7 +3,7 @@ Last Updated Wednesday, July 29, 2026
 
 ## Configure and Build CUDA-Aware HPC Node for OpenFOAM on Ubuntu Noble
 
-This repository documents the configuration, build, and installation from source repositiories of an optimized, CUDA-enabled, high-performance computing (HPC) device running OpenFOAM's full suite of tools on Ubuntu Noble v24.04. The PC is presumed to potentially be a node in a super-computing cluster. These include configuration from source of external tools OpenFOAM has awareness support for, such as PETSc, METIS, Scotch, FFTW, etc - along with parallel-computing and CUDA-aware tools such as UCX, OpenMPI, Umpire, Hypre, and AMGX.
+This repository documents the configuration, build, and installation from source repositories of an optimized, CUDA-enabled, high-performance computing (HPC) device running OpenFOAM's full suite of tools on Ubuntu Noble v24.04. The PC is presumed to potentially be a node in a super-computing cluster. These include configuration from source of external tools OpenFOAM has awareness support for, such as PETSc, METIS, Scotch, FFTW, etc - along with parallel-computing and CUDA-aware tools such as UCX, OpenMPI, Umpire, Hypre, and AMGX.
 
 These consolidated [Noble Build Notes](Noble-Build-Notes.md) have been tested on two PCs covering a broad range of capabilities, and should work for most Nvidia GPUs manufactured in the last decade. Both PCs are named after their respective CPUs. The older device, Haswell, has a triple 1080 Ti GPU set-up, and exclusively requires a compute architecture `sm_61` flag. Meanwhile, Threadripper (or TR) has a dual 5090, 3090 Ti set-up, and so requires mixed architecture flags (`sm_86` and `sm_120`) for several compilation steps. 
 
