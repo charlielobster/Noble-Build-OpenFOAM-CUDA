@@ -278,7 +278,7 @@ cmake -GNinja -DCMAKE_INSTALL_PREFIX=/opt/paraview -DPARAVIEW_USE_PYTHON=ON -DPA
 
 ### Ninja Memory Issues
 
-`ninja -j` runs out of memory and always had to be re-run a couple of times on both machines. Build feedback can be minimal and some libraries take several minutes to build. Somewhere around halfway, I lowered the CPU count down to around on fourth of the available cores sometimes. Apparently, this gives ninja or cmake more memory for some of the larger objects.
+`ninja -j` runs out of memory and always had to be re-run a couple of times on both machines. Build feedback can be minimal and some libraries take several minutes to build. Somewhere around halfway, I lowered the CPU count down to around one fourth of the available cores sometimes. Apparently, this gives ninja or cmake more memory for some of the larger objects.
 
 `ninja -j$(nproc)` completely fails on TR. Apparently, there are issues with how `ninja` handles large core sizes on some AMD CPUs. I occasionally used `cmake --build . -j$(nproc)` to complete the process. 
 
