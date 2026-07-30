@@ -13,11 +13,11 @@ Instead, I wound up needing to both add a `prefs.sh` file and also overwrite som
 
 By convention, all the tools installed for this build use a lower-case naming convention and installed to the `/opt` folder. The OpenFOAM build is installed to `/opt/openfoam`. 
 
-## Stale/Ignored ParaView Libraries
+## Stale ParaView Libraries
 
 I built the current version of ParaView after trying to build `v5.12.1`, the version used in the tarball associated with OpenFOAM `v2606` (the version used in this document) on OpenFOAM.com's website. Brittle dependencies exist between VTK and QT 5 and OpenFOAM's only ParaView-aware component, a module named PVFoamReader. PVFoamReader is also the only tool that requires HDF5 support. There is also another associated visualization component, an in-process off-screen renderer, that uses VTK libraries as well.
 
-Due to the issues with those incompatible ParaView libraries, I renamed these two `Allwmake` files to `xxxAllwmake`, in the following `openfoam` locations:
+Due to the issues with those incompatible ParaView libraries, I rename the `Allwmake` files to `xxxAllwmake` in the following `openfoam` locations:
 
 - `src/plugins/bindings/vtk-hdf` 
 - `src/modules/visualization`
@@ -616,6 +616,13 @@ source /opt/openfoam/etc/bashrc
 # source prefs again, overwriting the overwrites
 source /opt/openfoam/etc/prefs.sh
 ```
+
+## Ignore ParaView/VTK `Allwmake` Files
+
+Rename the `Allwmake` files to `xxxAllwmake` in the following `openfoam` locations:
+
+- `src/plugins/bindings/vtk-hdf` 
+- `src/modules/visualization`
 
 ## Run Allwmake
 
