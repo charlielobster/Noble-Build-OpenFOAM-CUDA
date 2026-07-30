@@ -48,7 +48,7 @@ cuda-toolkit-12-8 build-essential automake autoconf pkg-config libtool perl pyth
 
 Note that I installed these in a particular sequence in the builds.
 
-## Topology
+## Installation Folder Topology
 
 The tools and applications are placed in `root`-owned folders inside `/opt`. Upon completion of the build notes, the topology is as follows:
 
