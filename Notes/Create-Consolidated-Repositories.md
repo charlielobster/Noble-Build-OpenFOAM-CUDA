@@ -69,7 +69,7 @@ git submodule add https://github.com/KarypisLab/METIS.git
 git submodule add https://github.com/KarypisLab/ParMETIS.git
 git submodule add https://gitlab.inria.fr/scotch/scotch.git
 git submodule add https://github.com/sandialabs/Zoltan
-git submodule add https://github.com/amgx/amgx.git
+git submodule add https://github.com/NVIDIA/amgx.git
 git submodule add https://github.com/petsc/PETSc.git
 git submodule add https://gitlab.com/openfoam/core/OpenFOAM.git
 git submodule add https://gitlab.hpc.cineca.it/exafoam/foamExternalSolvers
