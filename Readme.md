@@ -15,23 +15,25 @@ This repository also includes folders containing some [`OpenFOAM/etc`](OpenFOAM/
 
 Forks and/or clones were made of the following repositories:
 
+- https://github.com/openucx/ucx
 - https://github.com/libevent/libevent.git
 - https://github.com/open-mpi/hwloc.git
 - https://github.com/openpmix/openpmix.git
 - https://github.com/openpmix/prrte.git
 - https://github.com/open-mpi/ompi.git
-- https://github.com/KarypisLab/GKlib.git
-- https://github.com/KarypisLab/METIS.git
-- https://github.com/KarypisLab/ParMETIS.git
-- https://gitlab.com/openfoam/core/OpenFOAM.git
-- https://gitlab.com/openfoam/core/ThirdParty-common.git
-- https://github.com/openucx/ucx
 - https://github.com/Kitware/ParaView.git
 - https://github.com/LLNL/Umpire.git
 - https://github.com/hypre-space/hypre.git
-- https://github.com/amgx/amgx.git
+- https://github.com/FFTW/fftw3.git
+- https://github.com/KaHIP/KaHIP.git
+- https://github.com/KarypisLab/GKlib.git
+- https://github.com/KarypisLab/METIS.git
+- https://github.com/KarypisLab/ParMETIS.git
 - https://gitlab.inria.fr/scotch/scotch.git
 - https://github.com/sandialabs/Zoltan
+- https://github.com/amgx/amgx.git
+- https://github.com/petsc/PETSc.git
+- https://gitlab.com/openfoam/core/OpenFOAM.git
 - https://gitlab.hpc.cineca.it/exafoam/foamExternalSolvers
 
 The complete set of tools are collected as submodules in the [Tools folder](/Tools).
