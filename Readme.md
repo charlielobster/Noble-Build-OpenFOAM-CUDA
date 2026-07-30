@@ -34,6 +34,8 @@ Forks and/or clones were made of the following repositories:
 - https://github.com/sandialabs/Zoltan
 - https://gitlab.hpc.cineca.it/exafoam/foamExternalSolvers
 
+The complete set of tools are collected as submodules in the [Tools folder](/Tools).
+
 ## Prerequisites
 
 The complete list of prerequisite tools to acquire using `sudo apt get`:
