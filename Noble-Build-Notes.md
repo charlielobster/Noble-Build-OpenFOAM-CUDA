@@ -637,7 +637,7 @@ Rename the `Allwmake` files to `xxxAllwmake` in the following `openfoam` locatio
 ```
 
 ## Post-Install Environment Clean-Up and Folder Consolidation
-Under Construction - See AmgX4Foam Notes
+<b>Under Construction - See AmgX4Foam Notes</b>
 
 Once the installation is complete, I consolidated my environment and generated folders, and locked down the installation by granting ownership to `root`. 
 
@@ -719,7 +719,7 @@ sudo chown root:root /opt/openfoam
 ```
 
 # AmgX4Foam 
-Under Construction Update: 7/30 - issues when using cleaned-up OpenFOAM Environment Variables
+<b>Under Construction Update: 7/30 - issues when using cleaned-up OpenFOAM Environment Variables</b>
 
 ## Hack `wmake/cuda`
 
