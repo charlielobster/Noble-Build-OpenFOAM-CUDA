@@ -3,7 +3,7 @@ Last Modified Wednesday July 29 2026
 
 ## OpenFOAM Configuration Introduction
 
-In this walkthrough, OpenFOAM is built as the penultimate tool on top of a large pile of supporting tools. As such, they are all aware of one another and conventions used are organized accordingly around OpenFOAM. OpenFOAM uses a custom build tool called `Allwmake`. Similar to other `make` tools, `Allwmake` only builds files in subfolders containing an `Allwmake` file. You can run `./Allwmake` multiple times, and it just picks up wherever it left off. 
+In this walkthrough, OpenFOAM is built as the penultimate tool on top of a large pile of supporting tools. Many are aware of one another, and conventions are organized accordingly around OpenFOAM. OpenFOAM uses a custom build tool called `Allwmake`. Similar to other `make` tools, `Allwmake` only builds files in subfolders containing an `Allwmake` file. You can run `./Allwmake` multiple times, and it just picks up wherever it left off. 
 
 Although built from a relatively simple pair of `Allwmake` commands, OpenFOAM uses a complex and, for me, somewhat opaque configuration and build process under the hood that automatically sets and edits multiple environment variables and creates numerous new paths and folders. As part of the normal documented build process, users are directed to source the `OpenFOAM/etc/bashrc` in the root OpenFOAM directory to kick off this process. This `bashrc` file generates or changes 60 environment variables (a reverse-engineered list can be found [here](Notes/OpenFOAM-Environment-Variables.md))
 
