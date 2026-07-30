@@ -1,4 +1,4 @@
-# Noble Build Notes 
+# The Noble Build Notes 
 Last Modified Wednesday July 29 2026
 
 ## OpenFOAM Configuration Introduction
@@ -401,7 +401,7 @@ sudo make install
 
 # Karypis Labs
 
-Create a [consolidated repository] containing all three Karypis Labs tools used by PETSc and OpenFOAM.
+Create a [consolidated repository] containing the three Karypis Labs tools used by PETSc and OpenFOAM.
 
 ## GKlib
 
