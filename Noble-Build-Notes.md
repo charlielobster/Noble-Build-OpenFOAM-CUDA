@@ -690,7 +690,7 @@ By default, this installs to the `FOAM_USER_LIBBIN` folder, whether or not that 
 
 # Post-Install Environment Clean-Up and Folder Consolidation
 
-Update Thur, July 30. Doing these steps break `Allwmake's wmkdepends` tool downstream. The safe bet is first installing `libAmgX4FOam.so` (instructions in the next section). Once that installation was complete, I consolidated my environment and generated folders, and locked down the installation by granting ownership to `root`. 
+Update Thur, July 30. Doing these steps break `Allwmake's wmkdepends` tool downstream. The safe bet is first installing `libAmgX4FOam.so` (instructions in the last section). Once that installation was complete, I consolidated my environment and generated folders, and locked down the installation by granting ownership to `root`. 
 
 ```bash
 # move everything that Allwmake built into ...
