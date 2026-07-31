@@ -636,6 +636,23 @@ Rename the `Allwmake` files to `xxxAllwmake` in the following `openfoam` locatio
 /./Allwmake-plugins -j
 ```
 
+## Check Paths
+
+From a new terminal, check the paths are resolved.
+
+```bash
+ldd /opt/openfoam/lib/libOpenFOAM.so 
+ldd $FOAM_APPBIN/simpleFoam
+# other tools, libs, etc...
+```
+
+Finally, lock the folder down:
+
+```bash
+sudo chown -R root:root /opt/openfoam
+```
+
+
 # AmgX4Foam 
 Update: 7/30 - `wmkdepends` breaks when using cleaned-up OpenFOAM Environment Variables (see next Section).
 
