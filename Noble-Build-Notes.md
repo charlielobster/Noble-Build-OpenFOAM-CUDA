@@ -652,6 +652,16 @@ Finally, lock the folder down:
 sudo chown -R root:root /opt/openfoam
 ```
 
+## Final `.bashrc` Changes
+
+```bash
+export CUDA_HOME=/usr/local/cuda
+
+export PATH=/opt/scotch/bin:/opt/karypis/bin:/opt/kahip/bin:/opt/fftw/bin:/opt/umpire/bin:/opt/paraview/bin:/opt/ompi/bin:/opt/prrte/bin:/opt/pmix/bin:/opt/hwloc/bin:/opt/libevent/bin:/opt/ucx/bin:$CUDA_HOME/bin:$PATH
+export LD_LIBRARY_PATH=/opt/petsc/lib:/opt/amgx/lib:/opt/zoltan/lib:/opt/scotch/lib:/opt/karypis/lib:/opt/kahip/lib:/opt/fftw/lib:/opt/hypre/lib:/opt/umpire/lib:/opt/paraview/lib:/opt/ompi/lib:/opt/prrte/lib:/opt/pmix/lib:/opt/hwloc/lib:/opt/libevent/lib:/opt/ucx/lib:$CUDA_HOME/lib64
+
+source /opt/openfoam/etc/bashrc
+```
 
 # AmgX4Foam 
 
