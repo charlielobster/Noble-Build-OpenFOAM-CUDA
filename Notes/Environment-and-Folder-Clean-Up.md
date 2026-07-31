@@ -73,6 +73,7 @@ ldd /opt/openfoam/lib/libOpenFOAM.so
 ldd $FOAM_APPBIN/simpleFoam
 # other tools, libs, etc...
 ```
+
 Finally, lock the folder down:
 
 ```bash
