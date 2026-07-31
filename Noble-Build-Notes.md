@@ -654,7 +654,6 @@ sudo chown -R root:root /opt/openfoam
 
 
 # AmgX4Foam 
-Update: 7/30 - `wmkdepends` breaks when using cleaned-up OpenFOAM Environment Variables (see next Section).
 
 ## Hack `wmake/cuda`
 
