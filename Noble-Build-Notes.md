@@ -688,7 +688,7 @@ AmgX4Foam's `src/csrMatrix/csrMatrix.h` was also missing a `#include <cuda_runti
 
 By default, this installs to the `FOAM_USER_LIBBIN` folder, whether or not that folder exists. Note that `FOAM_USER_LIBBIN` typically uses OpenFOAM's variable-based naming conventions: `~/OpenFOAM/<user name>-<version>/platforms/<arch><compiler><precision><index size><third party folder>/lib`.
 
-# (Optional) Post-Install Environment Clean-Up and Folder Consolidation
+# Post-Install Environment Clean-Up and Folder Consolidation (Optional)
 
 Update Thur, July 30. Doing these steps break `Allwmake's wmkdepends` tool downstream. The safe bet is first installing `libAmgX4FOam.so` (instructions in the last section). Once that installation was complete, I consolidated my environment and generated folders, and locked down the installation by granting ownership to `root`. 
 
