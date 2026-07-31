@@ -636,10 +636,61 @@ Rename the `Allwmake` files to `xxxAllwmake` in the following `openfoam` locatio
 /./Allwmake-plugins -j
 ```
 
-## Post-Install Environment Clean-Up and Folder Consolidation
-<b>Under Construction - See AmgX4Foam Notes</b>
+# AmgX4Foam 
+Update: 7/30 - `wmkdepends` breaks when using cleaned-up OpenFOAM Environment Variables (see next Section).
 
-Once the installation is complete, I consolidated my environment and generated folders, and locked down the installation by granting ownership to `root`. 
+## Hack `wmake/cuda`
+
+Out of the box, AmgX4Foam's default configuration options limit only a single CUDA arch code, so I changed the behavior of the `-cu` flag so that it is no longer responsible for passing the architecture. Instead, I replaced line 12 (`cuARCH    :=  -m64 -arch=sm_$(NVARCH)`) in the `wmake/cuda` file: 
+
+```bash
+# Haswell
+(line 12) cuARCH    :=  -m64 -gencode arch=compute_61,code=sm_61
+
+# Threadripper
+cuARCH    :=  -m64 -gencode arch=compute_86,code=sm_86 -gencode arch=compute_120,code=sm_120
+```
+
+However, I still had to enable CUDA for the compilation by including the flag though: `./Allwmake -cu 1`. 
+
+Lines 17 in `src/Make/options` and 12 in `wmake/c++` were also removed.
+
+I also had to add 3 lines to the top of `src/Make/options`:
+
+```properties
+LIB_SRC = $(FOAM_SRC)
+AMGX_INC = /opt/amgx/include
+AMGX_LIB = /opt/amgx/lib
+```
+
+Finally, I also had to add these two lines to `EXE_INC` and `LIB_LIBS` accordingly:
+
+```properties
+EXE_INC = \
+    ...
+    -I/usr/local/cuda/include \
+    -I/opt/ompi/include \
+    ...
+
+LIB_LIBS = \
+    ...
+    -L/usr/local/cuda/lib64 -lcudart \
+    ...
+```
+
+AmgX4Foam's `src/csrMatrix/csrMatrix.h` was also missing a `#include <cuda_runtime.h>` statement.
+
+## Run `Allwmake`
+
+```bash
+./Allwmake -cu 1
+```
+
+By default, this installs to the `FOAM_USER_LIBBIN` folder, whether or not that folder exists. Note that `FOAM_USER_LIBBIN` typically uses OpenFOAM's variable-based naming conventions: `~/OpenFOAM/<user name>-<version>/platforms/<arch><compiler><precision><index size><third party folder>/lib`.
+
+# Post-Install Environment Clean-Up and Folder Consolidation
+
+Update Thur, July 30. Doing these steps break `Allwmake's wmkdepends` tool downstream. The safe bet is first installing `libAmgX4FOam.so` (instructions in the next section). Once that installation was complete, I consolidated my environment and generated folders, and locked down the installation by granting ownership to `root`. 
 
 ```bash
 # move everything that Allwmake built into ...
@@ -717,55 +768,3 @@ Finally, lock the folder down:
 ```bash
 sudo chown root:root /opt/openfoam
 ```
-
-# AmgX4Foam 
-<b>Under Construction Update: 7/30 - issues when using cleaned-up OpenFOAM Environment Variables</b>
-
-## Hack `wmake/cuda`
-
-Out of the box, AmgX4Foam's default configuration options limit only a single CUDA arch code, so I changed the behavior of the `-cu` flag so that it is no longer responsible for passing the architecture. Instead, I replaced line 12 (`cuARCH    :=  -m64 -arch=sm_$(NVARCH)`) in the `wmake/cuda` file: 
-
-```bash
-# Haswell
-(line 12) cuARCH    :=  -m64 -gencode arch=compute_61,code=sm_61
-
-# Threadripper
-cuARCH    :=  -m64 -gencode arch=compute_86,code=sm_86 -gencode arch=compute_120,code=sm_120
-```
-
-However, I still had to enable CUDA for the compilation by including the flag though: `./Allwmake -cu 1`. 
-
-Lines 17 in `src/Make/options` and 12 in `wmake/c++` were also removed.
-
-I also had to add 3 lines to the top of `src/Make/options`:
-
-```properties
-LIB_SRC = $(FOAM_SRC)
-AMGX_INC = /opt/amgx/include
-AMGX_LIB = /opt/amgx/lib
-```
-
-Finally, I also had to add these two lines to `EXE_INC` and `LIB_LIBS` accordingly:
-
-```properties
-EXE_INC = \
-    ...
-    -I/usr/local/cuda/include \
-    -I/opt/ompi/include \
-    ...
-
-LIB_LIBS = \
-    ...
-    -L/usr/local/cuda/lib64 -lcudart \
-    ...
-```
-
-AmgX4Foam's `src/csrMatrix/csrMatrix.h` was also missing a `#include <cuda_runtime.h>` statement.
-
-## Run `Allwmake`
-
-```bash
-./Allwmake -cu 1
-```
-
-By default, this installs to the `FOAM_USER_LIBBIN` folder, whether or not that folder exists. Note that `FOAM_USER_LIBBIN` typically uses OpenFOAM's variable-based naming conventions: `~/OpenFOAM/<user name>-<version>/platforms/<arch><compiler><precision><index size><third party folder>/lib`.
