@@ -766,5 +766,5 @@ ldd $FOAM_APPBIN/simpleFoam
 Finally, lock the folder down:
 
 ```bash
-sudo chown root:root /opt/openfoam
+sudo chown -R root:root /opt/openfoam
 ```
