@@ -7,6 +7,8 @@ In this walkthrough, OpenFOAM is built as the penultimate tool on top of a large
 
 OpenFOAM uses a custom build tool called `Allwmake`. Similar to other `make` tools, `Allwmake` only builds files in subfolders containing an `Allwmake` file. You can run `./Allwmake` multiple times, and it just picks up wherever it left off. 
 
+## Beginner's Issues with External Tool Resolution
+
 Although built from a relatively simple pair of `Allwmake` commands, OpenFOAM uses a complex and, for me, somewhat opaque configuration and build process under the hood that automatically sets and edits multiple environment variables and creates numerous new paths and folders. As part of the normal documented build process, users are directed to source the `OpenFOAM/etc/bashrc` in the root OpenFOAM directory to kick off this process. This `bashrc` file generates or changes 60 environment variables (a reverse-engineered list can be found [here](Notes/OpenFOAM-Environment-Variables.md))
 
 Some of the expected configuration functionality was broken for my Ubuntu instance out of the box, in particular regarding external tool mappings. OpenFOAM uses a `etc/config.sh/tool-name` convention for settings paths, along with an associated, user-created `etc/prefs.sh` file for customization and overriding. However, in addition to defining variables in these `tool-name` files, there is also some embedded logic in some cases, and that logic didn't always end up producing the expected results, in my case. 
