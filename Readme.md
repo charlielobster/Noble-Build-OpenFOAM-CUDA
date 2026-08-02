@@ -40,13 +40,14 @@ The complete set of tools are collected as submodules in the [Tools folder](/Too
 
 ## Prerequisites
 
-The complete list of prerequisite tools to acquire using `sudo apt get`:
+The complete list of prerequisite tools to acquire using `sudo apt get`. 
+
+Note that I did not install these all at once, but when needed in support of the builds:
 
 ```text
 cuda-toolkit-12-8 build-essential automake autoconf pkg-config libtool perl python3 python3-pip flex bison gfortran cmake ninja-build libtbb-dev mesa-common-dev mesa-utils freeglut3-dev xsltproc libxkbcommon-dev qt6-5compat-dev qt6-base-dev qt6-tools-dev qt6-svg-dev libcgal-dev libgmp-dev libmpfr-dev libboost-system-dev libopenblas-dev liblapack-dev
 ```
 
-Note that I installed these in a particular sequence in the builds.
 
 ## Installation Folder Topology
 
