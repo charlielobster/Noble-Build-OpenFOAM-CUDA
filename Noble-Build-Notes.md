@@ -589,7 +589,7 @@ make PETSC_DIR=/home/user/repos/petsc PETSC_ARCH=arch-linux-c-debug check
 
 make PETSC_DIR=/home/user/repos/petsc PETSC_ARCH=arch-linux-c-debug install
 
-sudo chown root:root /opt/petsc
+sudo chown root:root -R /opt/petsc
 ```
 
 ## PETSc `openfoam/etc/prefs.sh` Changes
